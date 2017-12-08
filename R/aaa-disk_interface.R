@@ -5,10 +5,10 @@ DiskInterface <- R6::R6Class("DiskInterface",
       private$write_fn <- write_fn
     },
     read = function(...) {
-      do.call(private$read_fn, I(...))
+      do.call(private$read_fn, list(...))
     },
     write = function(...) {
-      do.call(private$write_fn, I(...))
+      do.call(private$write_fn, list(...))
     }
   private = list(
     read_fn = "",
