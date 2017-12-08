@@ -5,14 +5,14 @@ CloudInterface <- R6::R6Class("CloudInterface",
       private$put_fn    <- put_fn
       private$exists_fn <- exists_fn
     },
-    get = function(...) {
-      do.call(private$get_fn, list(...))
+    get = function(key, filename, params) {
+      private$get_fn(key, filename, params)
     },
-    put = function(...) {
-      do.call(private$put_fn, list(...))
+    put = function(key, filename, params) {
+      private$put_fn(key, filename, params)
     },
-    exists = function(...) {
-      do.call(private$exists_fn, list(...))
+    exists = function(key) {
+      private$exists_fn(key)
     }
   ),
   private = list(

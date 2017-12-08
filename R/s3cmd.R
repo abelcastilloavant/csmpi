@@ -39,7 +39,7 @@ s3cmd_interface <- CloudInterface$new(get_using_s3cmd, put_using_s3cmd, exists_u
 s3cmdread <- function(name, path, storage_format = "RDS", ...) {
   params <- list(...)
   params$bucket_name <- path
-  read_from_cloud_storage(name, "s3cmd", params)
+  read_from_cloud_storage(name, "s3cmd", storage_format, params)
 }
 
 s3cmdstore <- function(obj, name, path, storage_format = "RDS", ...) {
