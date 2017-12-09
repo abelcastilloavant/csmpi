@@ -1,7 +1,7 @@
 read_from_cloud_storage <- function(key, cloud_name, storage_format, params,
                                       session_cache = getOption("csmpi.session_cache", TRUE)) {
   if (isTRUE(session_cache) && `in_session_cache?`(key, cloud_name, storage_format)) {
-    return(get_from_session_cache(key, cloud_name, storage_format))
+    return(read_from_session_cache(key, cloud_name, storage_format))
   }
 
   cloud_interface <- CLOUD_INTERFACES[[cloud_name]]
