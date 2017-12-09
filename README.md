@@ -36,7 +36,7 @@ use in-session caching using [least-recently-used in-memory caching](https://git
 
 
 
-### License
+## License
 
 This project is licensed under the MIT License:
 
