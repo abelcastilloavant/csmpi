@@ -1,13 +1,9 @@
 # csmpi - fetch and retrieve data from cloud storage
 
 There's this amazing R package called [s3mpi](https://github.com/robertzk/s3mpi/), that makes it
-easy to read and write serialized R objects to Amazon's AWS Simple Storage Service (S3). After using
-it for a while, it became apparent that the idea of using cloud storage to save R objects could be
-generalized, both in terms of the cloud storage service used, and the format in which data is stored
-
-The goal of this package is to serve as a generalization of `s3mpi` in exactly these two directions.
-To accomplish this, we introduce a layer of abstraction to the code path through which it becomes
-easy to swap out cloud storage services or data storage formats.
+easy to read and write serialized R objects to Amazon's AWS Simple Storage Service (S3). This
+package is a natural generalization of s3mpi - designed with support for multiple cloud
+backends and multiple storage formats in mind.
 
 
 ## Installation and Use
@@ -57,6 +53,13 @@ interact with the cloud and the files in disk. We have two kinds of interfaces:
 
 In order to avoid re-reading data from the cloud, we use caching in the read operation. Right now we
 use in-session caching using [least-recently-used in-memory caching](https://github.com/kirillseva/cacher).
+
+
+## Future developments
+
+This package is a generalization of [s3mpi](https://github.com/robertzk/s3mpi/) - it is
+still under development, but the first development milestone is to replicate the functionality of
+"s3mpi".
 
 
 ## License
