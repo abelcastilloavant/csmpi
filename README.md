@@ -9,10 +9,34 @@ The goal of this package is to serve as a generalization of `s3mpi` in exactly t
 To accomplish this, we introduce a layer of abstraction to the code path through which it becomes
 easy to swap out cloud storage services or data storage formats.
 
-This package is still under development.
+
+## Installation and Use
+
+This package is not available on CRAN. To install this package, use devtools:
+```r
+if (!require(devtools)) { install.packages("devtools") }
+devtools::install_github("abelcastilloavant/csmpi")
+```
+
+This package is still under development. Right now, the only available cloud interface is AWS S3 via
+`s3cmd`, and reading/writing files RDS files. There are two wrappers for this - `s3cmdread` and
+`s3cmdstore`:
+```r
+library(csmpi)
+s3cmdstore(iris, "temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
+
+# later, from another R session
+library(csmpi)
+iris2 <- s3cmdread("temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
+identical(iris, iris2)
+# [1] TRUE
+
+```
 
 
-## Interfaces
+## Mechanics
+
+### Interfaces
 
 The two operations supported by this package are:
 1. Take an object in an R session, write it to disk, and push the written file to the cloud; and
@@ -29,11 +53,10 @@ interact with the cloud and the files in disk. We have two kinds of interfaces:
 * Disk interfaces: these have `read` and `write` methods to interact with data on disk.
 
 
-## Caching
+### Caching
 
 In order to avoid re-reading data from the cloud, we use caching in the read operation. Right now we
 use in-session caching using [least-recently-used in-memory caching](https://github.com/kirillseva/cacher).
-
 
 
 ## License
