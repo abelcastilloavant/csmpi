@@ -33,6 +33,6 @@ write_to_cloud_storage <- function(obj, key, cloud_name, storage_format, params,
     filename <- tempfile(); on.exit(unlink(tmpfile))
   }
 
-  DISK_INTERFACES[[storage_format]]$write(key, filename, params)
-  CLOUD_INTERFACES[[cloud_name]]$put(obj, filename, params)
+  DISK_INTERFACES[[storage_format]]$write(obj, filename, params)
+  CLOUD_INTERFACES[[cloud_name]]$put(key, filename, params)
 }
