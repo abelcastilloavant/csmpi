@@ -1,2 +1,14 @@
+# Version 0.0.3
+- Implemented in-session LRU caching in `read_from_cloud_storage`.
+
+# Version 0.0.2
+- Implemented interface classes for cloud storage and disk writing formats.
+- Implemented agnostic reading and writing pipelines `read_from_cloud_storage` and
+  `write_to_cloud_storage`.
+- Added `s3cmd` cloud interface.
+- Added `RDS` disk interface.
+- Added user-friendly wrappers `s3cmdread` and `s3cmdstore`, to read/write objects using `s3cmd` in
+  `RDS` format.
+
 # Version 0.0.1
-- Package created.
+- Created package.
