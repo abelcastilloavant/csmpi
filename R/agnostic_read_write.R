@@ -26,10 +26,13 @@ read_from_cloud_storage <- function(key, cloud_name, storage_format, params,
   obj
 }
 
-write_to_cloud_storage <- function(obj, key, cloud_name, storage_format, params, overwrite_disk_cache = FALSE) {
-  if (isTRUE(overwrite_disk_cache)) {
-    filename <- disk_cache_filename(key, cloud_name, storage_format)
-  } else {
+write_to_cloud_storage <- function(obj, key, cloud_name, storage_format, params, use_disk_cache = getOption("csmpi.use_disk_cache", FALSE), overwrite_disk_cache = FALSE) {
+  filename <- disk_cache_filename(key, cloud_name, storage_format)
+
+  if (!isTRUE(use_disk_cache)) {
+    filename <- tempfile(); on.exit(unlink(tmpfile))
+  }
+  if (file.exists(filename) && !isTRUE(overwrite_disk_cache)) {
     filename <- tempfile(); on.exit(unlink(tmpfile))
   }
 
