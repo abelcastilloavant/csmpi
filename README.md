@@ -53,12 +53,13 @@ interact with the cloud and the files in disk. We have two kinds of interfaces:
 
 In order to avoid re-reading data from the cloud, we use caching in the read operation. We offer
 cacing in-session and on-disk, which can be toggled by setting the options `csmpi.use_session_cache`
-and `csmpi.use_disk_cache`, respectively.
+and `csmpi.use_disk_cache`, respectively, to `TRUE`.
 
 In-session caching uses [least-recently-used in-memory caching](https://github.com/kirillseva/cacher)
 to store data in memory. On-disk caching writes data to disk, to a folder specified by the option
 `csmpi.disk_cache_dir`.
 
+The write operation writes to the disk cache if the option `csmpi.use_disk_cache` is set to `TRUE`.
 
 ## Future developments
 
