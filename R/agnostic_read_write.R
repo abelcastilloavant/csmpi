@@ -30,7 +30,7 @@ write_to_cloud_storage <- function(obj, key, cloud_name, storage_format, params,
   filename <- disk_cache_filename(key, cloud_name, storage_format)
 
   if (!isTRUE(use_disk_cache)) {
-    filename <- tempfile(); on.exit(unlink(tmpfile))
+    filename <- tempfile(); on.exit(unlink(filename))
   }
   if (file.exists(filename) && !isTRUE(overwrite_disk_cache)) {
     filename <- tempfile(); on.exit(unlink(tmpfile))
