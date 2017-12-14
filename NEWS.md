@@ -1,3 +1,7 @@
+# Version 0.0.4
+- Implemented on-disk caching in `read_from_cloud_storage`.
+- `s3cmdread` and `s3cmdstore` now use an option to determine a default path.
+
 # Version 0.0.3
 - Implemented in-session LRU caching in `read_from_cloud_storage`.
 
