@@ -45,5 +45,5 @@ s3cmdread <- function(name, path, storage_format = "RDS", ...) {
 s3cmdstore <- function(obj, name, path, storage_format = "RDS", ..., force = FALSE) {
   params <- list(...)
   params$bucket_name <- path
-  write_to_cloud_storage(obj, name, "s3cmd", storage_format, params, overwrite_disk_cache = force)
+  write_to_cloud_storage(obj, name, "s3cmd", storage_format, params, use_disk_cache = force, overwrite_disk_cache = force)
 }
