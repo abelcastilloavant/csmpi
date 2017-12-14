@@ -35,14 +35,22 @@ exists_using_s3cmd <- function(...) {
 
 s3cmd_interface <- CloudInterface$new(get_using_s3cmd, put_using_s3cmd, exists_using_s3cmd)
 
+s3cmd_default_path <- function() {
+  opt_name <- "csmpi.s3cmd_default_path"
+  path <- getOption(opt_name)
+  if (is.null(path)) {
+    stop(productivus::pp("The option '#{opt_name}' is NULL, but it should have the default path for s3cmd."))
+  }
+  path
+}
 
-s3cmdread <- function(name, path, storage_format = "RDS", ...) {
+s3cmdread <- function(name, path = s3cmd_default_path(), storage_format = "RDS", ...) {
   params <- list(...)
   params$bucket_name <- path
   read_from_cloud_storage(name, "s3cmd", storage_format, params)
 }
 
-s3cmdstore <- function(obj, name, path, storage_format = "RDS", ..., force = FALSE) {
+s3cmdstore <- function(obj, name, path = s3cmd_default_path(), storage_format = "RDS", ..., force = FALSE) {
   params <- list(...)
   params$bucket_name <- path
   write_to_cloud_storage(obj, name, "s3cmd", storage_format, params, use_disk_cache = force, overwrite_disk_cache = force)
