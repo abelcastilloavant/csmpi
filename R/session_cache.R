@@ -4,7 +4,7 @@ get_session_cache_key <- function(key, cloud_name, storage_format) {
   digest::digest(list(key = key, cloud_name = cloud_name, storage_format = storage_format))
 }
 
-`in_session_cache?` <- function(key, session_cache_key) {
+`in_session_cache?` <- function(session_cache_key) {
   session_cache$exists(session_cache_key)
 }
 
