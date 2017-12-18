@@ -26,7 +26,7 @@ write_to_cloud_storage <- function(obj, key, cloud_name, storage_format, params,
                                      use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
                                      num_tries = getOption("csmpi.num_tries", 3),
                                      overwrite_disk_cache = FALSE) {
-  disk_cache_filename <- get_disk_cache_filename (key, cloud_name, storage_format)
+  disk_cache_filename <- get_disk_cache_filename(key, cloud_name, storage_format)
   cloud_interface     <- DEFAULT_CLOUD_INTERFACES[[cloud_name]]
   disk_interface      <- DEFAULT_DISK_INTERFACES[[storage_format]]
 
