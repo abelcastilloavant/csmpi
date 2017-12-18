@@ -1,9 +1,11 @@
-write <- function(obj, key, cloud_interface, disk_interface, params,
-           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
-           num_tries = getOption("csmpi.num_tries", 3),
-           overwrite_disk_cache = FALSE, disk_cache_filename) {
+# escape hatch for NSE
+write_ <- function(obj, key, cloud_interface, disk_interface, params,
+            use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
+            num_tries = getOption("csmpi.num_tries", 3),
+            overwrite_disk_cache = FALSE, disk_cache_filename,
+            cloud_name_, storage_format_) {
   if (missing(disk_cache_filename)) {
-    disk_cache_filename <- get_disk_cache_filename(key, deparse(substitute(cloud_interface)), deparse(substitute(disk_interface)))
+    disk_cache_filename <- get_disk_cache_filename(key, cloud_name_, storage_format_)
   }
 
   filename <- disk_cache_filename
@@ -19,6 +21,21 @@ write <- function(obj, key, cloud_interface, disk_interface, params,
   handlr::with_retries({
     cloud_interface$put(key, filename, params)
   }, num_tries = num_tries, sleep = getOption("csmpi.sleep_time", 0.001))
+}
+
+
+
+write <- function(obj, key, cloud_interface, disk_interface, params,
+           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
+           num_tries = getOption("csmpi.num_tries", 3),
+           overwrite_disk_cache = FALSE, disk_cache_filename) {
+  cloud_name_ <- deparse(substitute(cloud_interface))
+  storage_format_ <- deparse(substitute(disk_interface))
+  write_(obj, key, cloud_interface, disk_interface, params,
+           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
+           num_tries = getOption("csmpi.num_tries", 3),
+           overwrite_disk_cache = FALSE, disk_cache_filename,
+           cloud_name_, storage_format_) {
 }
 
 

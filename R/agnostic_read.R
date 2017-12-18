@@ -1,21 +1,22 @@
-read <- function(key, cloud_interface, disk_interface, params,
+# escape hatch for NSE
+read_ <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", TRUE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
           num_tries = getOption("csmpi.num_tries", 3),
-          session_cache_key, disk_cache_filename) {
+          session_cache_key, disk_cache_filename,
+          cloud_name_, storage_format_) {
 
   if (isTRUE(use_session_cache) && isTRUE(use_disk_cache)) {
     stop("Both 'use_session_cache' and 'use_disk_cache' are TRUE - we currently do not allow this.")
   }
 
   if (missing(session_cache_key)) {
-    session_cache_key <- get_session_cache_key(key, deparse(substitute(cloud_interface)), deparse(substitute(disk_interface)))
+    session_cache_key <- get_session_cache_key(key, cloud_name_, storage_format_)
   }
 
   if (missing(disk_cache_filename)) {
-    disk_cache_filename <- get_disk_cache_filename(key, deparse(substitute(cloud_interface)), deparse(substitute(disk_interface)))
+    disk_cache_filename <- get_disk_cache_filename(key, cloud_name_, storage_format_)
   }
-
 
   if (isTRUE(use_session_cache) && `in_session_cache?`(key, cloud_name, storage_format)) {
     message("reading ", key, " from session cache")
@@ -31,7 +32,7 @@ read <- function(key, cloud_interface, disk_interface, params,
   if (`fetch_from_cloud?`(use_disk_cache, disk_cache_filename)) {
     message("reading ", key, " from ", cloud_name)
     handlr::with_retries({
-      cloud_interfaceget(key, filename, params)
+      cloud_interface$get(key, filename, params)
     }, num_tries = num_tries, sleep = getOption("csmpi.sleep_time", 0.001))
   }
 
@@ -45,6 +46,25 @@ read <- function(key, cloud_interface, disk_interface, params,
 }
 
 
+
+read <- function(key, cloud_interface, disk_interface, params,
+          use_session_cache = getOption("csmpi.use_session_cache", TRUE),
+          use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
+          num_tries = getOption("csmpi.num_tries", 3),
+          session_cache_key, disk_cache_filename) {
+
+  cloud_name_ <- deparse(substitute(cloud_interface))
+  storage_format_ <- deparse(substitute(disk_interface))
+
+    read_(key, cloud_interface, disk_interface, params,
+            use_session_cache = getOption("csmpi.use_session_cache", TRUE),
+            use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
+            num_tries = getOption("csmpi.num_tries", 3),
+            session_cache_key, disk_cache_filename,
+            cloud_name_, storage_format_) {
+
+}
+
 read_from_cloud_storage <- function(key, cloud_name, storage_format, params,
                                       use_session_cache = getOption("csmpi.use_session_cache", TRUE),
                                       use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
@@ -57,5 +77,4 @@ read_from_cloud_storage <- function(key, cloud_name, storage_format, params,
   read(key, cloud_interface, disk_interface, params, use_session_cache, use_disk_cache,
          num_tries, session_cache_key, disk_cache_filename) {
 }
-
 
