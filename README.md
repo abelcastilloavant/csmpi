@@ -15,8 +15,8 @@ devtools::install_github("abelcastilloavant/csmpi")
 ```
 
 This package is still under development. Right now, the only available cloud interface is AWS S3 via
-`s3cmd`, and reading/writing files RDS files. There are two wrappers for this - `s3cmdread` and
-`s3cmdstore`:
+the CLI tool `s3cmd`, and reading/writing files RDS files. There are two wrappers for this - `s3cmdread`
+and `s3cmdstore`:
 ```r
 library(csmpi)
 s3cmdstore(iris, "temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
@@ -60,6 +60,17 @@ to store data in memory. On-disk caching writes data to disk, to a folder specif
 `csmpi.disk_cache_dir`.
 
 The write operation writes to the disk cache if the option `csmpi.use_disk_cache` is set to `TRUE`.
+
+
+### Retry logic
+
+Sometimes network issues create intermittent errors when interacting with the cloud. To deal with
+this, we use [retry logic](https:://github.com/peterhurford/handlr), specifically around steps in
+the read and write process that interact with the cloud.
+
+You can specify the number of retries to use, and the amount of time to sleep between retries, with
+the options `csmpi.num_tries` and `csmpi.sleep_time`, respectively.
+
 
 ## Future developments
 
