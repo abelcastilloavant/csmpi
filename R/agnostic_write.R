@@ -1,4 +1,3 @@
-# escape hatch for NSE
 write_ <- function(obj, key, cloud_interface, disk_interface, params,
             use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
             num_tries = getOption("csmpi.num_tries", 3),
@@ -27,13 +26,12 @@ write <- function(obj, key, cloud_interface, disk_interface, params,
            use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
            num_tries = getOption("csmpi.num_tries", 3),
            overwrite_disk_cache = FALSE, disk_cache_filename) {
-  cloud_name_ <- deparse(substitute(cloud_interface))
+  cloud_name_     <- deparse(substitute(cloud_interface))
   storage_format_ <- deparse(substitute(disk_interface))
-  write_(obj, key, cloud_interface, disk_interface, params,
-           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
-           num_tries = getOption("csmpi.num_tries", 3),
-           overwrite_disk_cache = FALSE, disk_cache_filename,
-           cloud_name_, storage_format_) {
+
+  # escape hatch for NSE
+  write_(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_tries,
+           overwrite_disk_cache, disk_cache_filename, cloud_name_, storage_format_)
 }
 
 csmpi_write <- function(obj, key, cloud_name, storage_format, params,
