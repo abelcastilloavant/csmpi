@@ -2,7 +2,7 @@ Package: csmpi
 Type: Package
 Title: csmpi (http://github.com/abelcastilloavant/csmpi)
 Description: generic, extendable cloud storage MPI in R
-Version: 0.0.4
+Version: 0.0.5
 Author: Abel Castillo <abelcastillomath@gmail.com>
 Maintainer: Abel Castillo <abelcastillomath@gmail.com>
 Authors@R: c(person("Abel", "Castillo",
@@ -14,10 +14,12 @@ LazyData: true
 Imports:
     cacher,
     digest (>= 0.6.12),
-    productivus (>= 0.1.1)
+    productivus (>= 0.1.1),
+    handlr (>= 0.0.1.9002)
 Suggests:
     testthat
 Remotes: kirillseva/cacher@0.1.0,
-    robertzk/productivus@0.1.3
+    robertzk/productivus@0.1.3,
+    peterhurford/handlr@0.0.1.9002
 Roxygen: list(wrap = FALSE)
 RoxygenNote: 5.0.1

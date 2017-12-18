@@ -1,3 +1,6 @@
+# Version 0.0.5
+- Added retry logic to interactions with cloud interface.
+
 # Version 0.0.4
 - Implemented on-disk caching in `read_from_cloud_storage`.
 - `s3cmdread` and `s3cmdstore` now use an option to determine a default path.
