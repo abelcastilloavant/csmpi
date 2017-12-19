@@ -51,17 +51,13 @@ read <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", TRUE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
           num_retries = getOption("csmpi.num_retries", 3),
-          session_cache_key, disk_cache_filename, cloud_name, storage_format) {
+          session_cache_key, disk_cache_filename, cloud_name_, storage_format_) {
 
   if (missing(cloud_name)) {
     cloud_name_ <- deparse(substitute(cloud_interface))
-  } else {
-    cloud_name_ <- cloud_name
   }
   if (missing(storage_format)) {
     storage_format_ <- deparse(substitute(disk_interface))
-  } else {
-    storage_format_ <- storage_format
   }
 
   # escape hatch for NSE

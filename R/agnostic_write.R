@@ -22,17 +22,14 @@ write_ <- function(obj, key, cloud_interface, disk_interface, params,
 write <- function(obj, key, cloud_interface, disk_interface, params,
            use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
            num_retries = getOption("csmpi.num_retries", 3),
-           overwrite_disk_cache = FALSE, disk_cache_filename) {
+           overwrite_disk_cache = FALSE, disk_cache_filename,
+           cloud_name_, storage_format_) {
 
-  if (missing(cloud_name)) {
+  if (missing(cloud_name_)) {
     cloud_name_ <- deparse(substitute(cloud_interface))
-  } else {
-    cloud_name_ <- cloud_name
   }
-  if (missing(storage_format)) {
+  if (missing(storage_format_)) {
     storage_format_ <- deparse(substitute(disk_interface))
-  } else {
-    storage_format_ <- storage_format
   }
 
   # escape hatch for NSE
