@@ -33,7 +33,9 @@ with_mocked_disk_interface <- function(expr) {
 		`base::unlink` = function(filename) {
       remaining_filenames <- setdiff(ls(.mock_disk_env), filename)
       remaining_files     <- lapply(remaining_filenames, function(x) { .mock_disk_env[[x]] })
-      .mock_disk_env      <<- as.environment(remaining_files)
+      names(remaining_files) <- remaining_filenames
+
+      .mock_disk_env      <<- list2env(remaining_files)
 		},
       `base::file.exists` = function(filename) {
       isTRUE(filename %in% ls(.mock_disk_env))

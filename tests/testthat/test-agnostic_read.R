@@ -3,7 +3,7 @@ context("read")
 clear_test_environments()
 
 with_mocked_disk_interface({
-  describe("it can read from cloud storage", {
+  describe("read without caching", {
     .mock_cloud_env[["x"]] <- 7
     suppressMessages({
       actual_value <- read(
@@ -28,7 +28,7 @@ with_mocked_disk_interface({
 clear_test_environments()
 
 with_mocked_disk_interface({
-  describe("it can use in-session caching", {
+  describe("read using in-session caching", {
     .mock_cloud_env[["x"]] <- 7
     suppressMessages({
       actual_value <- read(
@@ -90,7 +90,7 @@ clear_test_environments()
 remove_from_in_session_cache("x")
 
 with_mocked_disk_interface({
-  describe("it can use disk caching", {
+  describe("read using disk caching", {
     .mock_cloud_env[["x"]] <- 7
     suppressMessages({
       actual_value <- read(

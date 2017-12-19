@@ -1,8 +1,7 @@
 write_ <- function(obj, key, cloud_interface, disk_interface, params,
             use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
             num_retries = getOption("csmpi.num_retries", 3),
-            overwrite_disk_cache = FALSE, disk_cache_filename,
-            cloud_name_, storage_format_) {
+            overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
 
   filename <- get_disk_cache_filename(key, cloud_name_, storage_format_)
 
@@ -22,8 +21,7 @@ write_ <- function(obj, key, cloud_interface, disk_interface, params,
 write <- function(obj, key, cloud_interface, disk_interface, params,
            use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
            num_retries = getOption("csmpi.num_retries", 3),
-           overwrite_disk_cache = FALSE, disk_cache_filename,
-           cloud_name_, storage_format_) {
+           overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
 
   if (missing(cloud_name_)) {
     cloud_name_ <- deparse(substitute(cloud_interface))
@@ -34,7 +32,7 @@ write <- function(obj, key, cloud_interface, disk_interface, params,
 
   # escape hatch for NSE
   write_(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
-           overwrite_disk_cache, disk_cache_filename, cloud_name_, storage_format_)
+           overwrite_disk_cache, cloud_name_, storage_format_)
 }
 
 csmpi_write <- function(obj, key, cloud_name, storage_format, params,
@@ -45,6 +43,6 @@ csmpi_write <- function(obj, key, cloud_name, storage_format, params,
   disk_interface      <- DEFAULT_DISK_INTERFACES[[storage_format]]
 
   write(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
-          overwrite_disk_cache, disk_cache_filename, cloud_name, storage_format)
+          overwrite_disk_cache, cloud_name, storage_format)
 }
 
