@@ -1,9 +1,9 @@
-use_read_hooks <- function(obj) {
+use_read_hook <- function(obj) {
   check_object_size(obj)
   (attr(obj, "csmpi.hooks")$read %||% identity)(obj)
 }
 
-use_write_hooks <- function(obj) {
+use_write_hook <- function(obj) {
   check_object_size(obj)
   (attr(obj, "csmpi.hooks")$read %||% identity)(obj)
 }
