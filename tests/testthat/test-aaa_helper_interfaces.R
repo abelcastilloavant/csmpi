@@ -21,9 +21,15 @@ mock_cloud_interface <- CloudInterface$new(
 )
 
 mock_disk_interface <- DiskInterface$new(
-  read_fn = function(filename, params) {
-  .mock_disk_env[[filename]]
-},
-  write_fn = function(obj, filename, params) {
-  .mock_disk_env[[filename]] <- obj
-}
+    read_fn = function(filename, params) {
+    .mock_disk_env[[filename]]
+  },
+    write_fn = function(obj, filename, params) {
+    .mock_disk_env[[filename]] <- obj
+  }
+)
+
+test_that("mock interfaces were generated correctly", {
+  expect_is(mock_cloud_interface, "CloudInterface")
+  expect_is(mock_disk_interface, "DiskInterface")
+})
