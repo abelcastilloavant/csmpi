@@ -37,8 +37,8 @@ or write your R object, you can add read and write hooks to your object before s
 To do so, add a list to the attribute `"csmpi.hooks"` of your object before writing it. This list
 should have a `read` function and a `write` function.
 
-This feature is analogous with `s3mpi:::s3normalize`, which is thoroughly documented
-[here](https://github.com/robertzk/s3mpi/blob/master/R/s3normalize.R)
+This feature is analogous with `s3mpi::s3normalize`, which is thoroughly documented
+[here](https://github.com/robertzk/s3mpi/blob/master/R/s3normalize.R).
 
 
 ## Mechanics
