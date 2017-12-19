@@ -53,10 +53,10 @@ read <- function(key, cloud_interface, disk_interface, params,
           num_retries = getOption("csmpi.num_retries", 3),
           session_cache_key, disk_cache_filename, cloud_name_, storage_format_) {
 
-  if (missing(cloud_name)) {
+  if (missing(cloud_name_)) {
     cloud_name_ <- deparse(substitute(cloud_interface))
   }
-  if (missing(storage_format)) {
+  if (missing(storage_format_)) {
     storage_format_ <- deparse(substitute(disk_interface))
   }
 
