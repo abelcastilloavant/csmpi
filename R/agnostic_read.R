@@ -38,7 +38,7 @@ read_ <- function(key, cloud_interface, disk_interface, params,
     }, num_tries = num_retries, sleep = getOption("csmpi.sleep_time", 0.001))
   }
 
-  obj <- disk_interface$read(filename, params)
+  obj <- from_pure_r_object(disk_interface$read(filename, params))
 
   if (isTRUE(use_session_cache)) {
     message("writing ", key, " to session cache")

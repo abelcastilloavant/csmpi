@@ -13,7 +13,7 @@ write_ <- function(obj, key, cloud_interface, disk_interface, params,
     filename <- tempfile(); on.exit(unlink(filename))
   }
 
-  disk_interface$write(obj, filename, params)
+  disk_interface$write(to_pure_r_object(obj), filename, params)
   handlr::with_retries({
     cloud_interface$put(key, filename, params)
   }, num_tries = num_retries, sleep = getOption("csmpi.sleep_time", 0.001))
