@@ -69,7 +69,7 @@ this, we use [retry logic](https:://github.com/peterhurford/handlr), specificall
 the read and write process that interact with the cloud.
 
 You can specify the number of retries to use, and the amount of time to sleep between retries, with
-the options `csmpi.num_tries` and `csmpi.sleep_time`, respectively.
+the options `csmpi.num_retries` and `csmpi.sleep_time`, respectively.
 
 
 ## Future developments

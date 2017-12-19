@@ -1,7 +1,7 @@
 read_ <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", TRUE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
-          num_tries = getOption("csmpi.num_tries", 3),
+          num_retries = getOption("csmpi.num_retries", 3),
           session_cache_key, disk_cache_filename,
           cloud_name_, storage_format_) {
 
@@ -32,7 +32,7 @@ read_ <- function(key, cloud_interface, disk_interface, params,
     message("reading ", key, " from ", cloud_name)
     handlr::with_retries({
       cloud_interface$get(key, filename, params)
-    }, num_tries = num_tries, sleep = getOption("csmpi.sleep_time", 0.001))
+    }, num_tries = num_retries, sleep = getOption("csmpi.sleep_time", 0.001))
   }
 
   obj <- disk_interfaceread(filename, params)
@@ -47,7 +47,7 @@ read_ <- function(key, cloud_interface, disk_interface, params,
 read <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", TRUE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
-          num_tries = getOption("csmpi.num_tries", 3),
+          num_retries = getOption("csmpi.num_retries", 3),
           session_cache_key, disk_cache_filename) {
 
   cloud_name_     <- deparse(substitute(cloud_interface))
@@ -55,19 +55,19 @@ read <- function(key, cloud_interface, disk_interface, params,
 
   # escape hatch for NSE
   read_(key, cloud_interface, disk_interface, params, use_session_cache, use_disk_cache,
-        num_tries, session_cache_key, disk_cache_filename, cloud_name_, storage_format_)
+        num_retries, session_cache_key, disk_cache_filename, cloud_name_, storage_format_)
 }
 
 csmpi_read <- function(key, cloud_name, storage_format, params,
                 use_session_cache = getOption("csmpi.use_session_cache", TRUE),
                 use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
-                num_tries = getOption("csmpi.num_tries", 3)) {
+                num_retries = getOption("csmpi.num_retries", 3)) {
   session_cache_key   <- get_session_cache_key(key, cloud_name, storage_format)
   disk_cache_filename <- get_disk_cache_filename(key, cloud_name, storage_format)
   cloud_interface     <- DEFAULT_CLOUD_INTERFACES[[cloud_name]]
   disk_interface      <- DEFAULT_DISK_INTERFACES[[storage_format]]
 
   read(key, cloud_interface, disk_interface, params, use_session_cache, use_disk_cache,
-         num_tries, session_cache_key, disk_cache_filename)
+         num_retries, session_cache_key, disk_cache_filename)
 }
 
