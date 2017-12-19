@@ -2,7 +2,7 @@ Package: csmpi
 Type: Package
 Title: csmpi (http://github.com/abelcastilloavant/csmpi)
 Description: generic, extendable cloud storage MPI in R
-Version: 0.0.5
+Version: 0.0.6
 Author: Abel Castillo <abelcastillomath@gmail.com>
 Maintainer: Abel Castillo <abelcastillomath@gmail.com>
 Authors@R: c(person("Abel", "Castillo",

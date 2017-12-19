@@ -45,7 +45,7 @@ consumption by an application in another language.
 
 In this package, "interfaces" encapsulate this knowledge - they understand the details of how to
 interact with the cloud and the files in disk. We have two kinds of interfaces:
-* Cloud interfaces: these have `get` and `put` methods to interact with data from the cloud, and
+* Cloud interfaces: these have `get`, `put`, and `exists` methods to interact with data from the cloud, and
 * Disk interfaces: these have `read` and `write` methods to interact with data on disk.
 
 
@@ -69,7 +69,7 @@ this, we use [retry logic](https:://github.com/peterhurford/handlr), specificall
 the read and write process that interact with the cloud.
 
 You can specify the number of retries to use, and the amount of time to sleep between retries, with
-the options `csmpi.num_tries` and `csmpi.sleep_time`, respectively.
+the options `csmpi.num_retries` and `csmpi.sleep_time`, respectively.
 
 
 ## Future developments
