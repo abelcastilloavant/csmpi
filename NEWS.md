@@ -1,3 +1,7 @@
+# Version 0.0.8
+- Allow use of read/write hooks stored in object attribute `csmpi.hooks`. In particular, this allows
+  users to read/write non-native R objects to the cloud by clever use of hooks.
+
 # Version 0.0.7
 - Implementation of agnostic `csmpi_exists`, as well as s3cmd-specific `s3cmdexists`.
 

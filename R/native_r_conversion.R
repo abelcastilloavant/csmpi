@@ -1,16 +1,16 @@
-to_pure_r_object <- function(obj) {
+use_read_hooks <- function(obj) {
   check_object_size(obj)
-  (attr(obj, "csmpi.normalize")$read %||% identity)(obj)
+  (attr(obj, "csmpi.hooks")$read %||% identity)(obj)
 }
 
-from_pure_r_object <- function(obj) {
+use_write_hooks <- function(obj) {
   check_object_size(obj)
-  (attr(obj, "csmpi.normalize")$read %||% identity)(obj)
+  (attr(obj, "csmpi.hooks")$read %||% identity)(obj)
 }
 
 check_object_size <- function(obj) {
   if (utils::object.size(obj) == 0) {
-    warning("In csmpi package: size-0 obj is being normalized", call. = TRUE)
+    warning("In csmpi package: object is of size 0, this is probably bad", call. = TRUE)
     NULL
   }
 }
