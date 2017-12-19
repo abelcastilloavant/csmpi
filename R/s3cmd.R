@@ -1,15 +1,24 @@
-extract_bucket_location <- function(params) {
-  if (!is.null(params$bucket_location)) {
-    productivus::pp("--bucket-location #{params$bucket_location}")
-  } else { "" }
-}
-
 which_s3cmd <- function() {
   if (isTRUE(nzchar(cmd <- getOption("csmpi.s3cmd_path")))) {
     cmd
   } else {
     as.character(Sys.which("s3cmd"))
   }
+}
+
+extract_bucket_location <- function(params) {
+  if (!is.null(params$bucket_location)) {
+    productivus::pp("--bucket-location #{params$bucket_location}")
+  } else { "" }
+}
+
+s3cmd_default_path <- function() {
+  opt_name <- "csmpi.s3cmd_default_path"
+  path <- getOption(opt_name)
+  if (is.null(path)) {
+    stop(productivus::pp("The option '#{opt_name}' is NULL, but it should have the default path for s3cmd."))
+  }
+  path
 }
 
 get_using_s3cmd <- function(key, filename, params) {
@@ -34,24 +43,3 @@ exists_using_s3cmd <- function(...) {
 }
 
 s3cmd_interface <- CloudInterface$new(get_using_s3cmd, put_using_s3cmd, exists_using_s3cmd)
-
-s3cmd_default_path <- function() {
-  opt_name <- "csmpi.s3cmd_default_path"
-  path <- getOption(opt_name)
-  if (is.null(path)) {
-    stop(productivus::pp("The option '#{opt_name}' is NULL, but it should have the default path for s3cmd."))
-  }
-  path
-}
-
-s3cmdread <- function(name, path = s3cmd_default_path(), storage_format = "RDS", ...) {
-  params <- list(...)
-  params$bucket_name <- path
-  csmpi_read(name, "s3cmd", storage_format, params)
-}
-
-s3cmdstore <- function(obj, name, path = s3cmd_default_path(), storage_format = "RDS", ..., force = FALSE) {
-  params <- list(...)
-  params$bucket_name <- path
-  csmpi_write(obj, name, "s3cmd", storage_format, params, use_disk_cache = force, overwrite_disk_cache = force)
-}
