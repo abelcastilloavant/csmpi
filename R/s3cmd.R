@@ -30,16 +30,18 @@ get_using_s3cmd <- function(key, filename, params) {
 }
 
 put_using_s3cmd <- function(key, filename, params) {
-  debug <- if (isTRUE(params$debug)) { "--debug" } else { "" }
-  bucket  <- if (!is.null(params$bucket_location)) {
+  debug  <- if (isTRUE(params$debug)) { "--debug" } else { "" }
+  bucket <- if (!is.null(params$bucket_location)) {
     productivus::pp("--bucket-location #{params$bucket_location}")
   } else { "" }
+
   system(productivus::pp('#{which_s3cmd()} put #{filename} "#{params$bucket_name}/#{key}" ',
     '#{extract_bucket_location(params)} #{debug}'))
 }
 
-exists_using_s3cmd <- function(...) {
-  stop("not implemented yet")
+exists_using_s3cmd <- function(key, params) {
+  result <- system(productivus::pp('#{which_s3cmd()} ls "#{params$bucket_name}/#{key}" '), intern = TRUE)
+  sum(grepl(paste(key, "(/[0-9A-Za-z]+)*/?$", sep = ""), result)) > 0
 }
 
 s3cmd_interface <- CloudInterface$new(get_using_s3cmd, put_using_s3cmd, exists_using_s3cmd)

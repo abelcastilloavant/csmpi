@@ -1,3 +1,6 @@
+# Version 0.0.7
+- Implementation of agnostic `csmpi_exists`, as well as s3cmd-specific `s3cmdexists`.
+
 # Version 0.0.6
 - Created versions of agnostic read and write functions that take in interface objects instead of
   relying on the default ones provided by the package.

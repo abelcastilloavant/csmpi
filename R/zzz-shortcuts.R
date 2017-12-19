@@ -10,3 +10,8 @@ s3cmdstore <- function(obj, name, path = s3cmd_default_path(), storage_format = 
   csmpi_write(obj, name, "s3cmd", storage_format, params, use_disk_cache = force, overwrite_disk_cache = force)
 }
 
+s3cmdexists <- function(name, path = s3cmd_default_path(), ...) {
+  params <- list(...)
+  params$bucket_name <- path
+  csmpi_exists(name, "s3cmd", params)
+}
