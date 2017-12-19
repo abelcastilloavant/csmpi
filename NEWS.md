@@ -1,3 +1,7 @@
+# Version 0.0.6
+- Created versions of agnostic read and write functions that take in interface objects instead of
+  relying on the default ones provided by the package.
+
 # Version 0.0.5
 - Added retry logic to interactions with cloud interface.
 
