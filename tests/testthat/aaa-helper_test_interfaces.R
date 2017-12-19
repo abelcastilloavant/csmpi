@@ -1,6 +1,13 @@
 .mock_cloud_env <- new.env()
 .mock_disk_env  <- new.env()
 
+clear_test_environments <- function() {
+  rm(list = ls(.mock_cloud_env), envir = .mock_cloud_env)
+  rm(list = ls(.mock_disk_env),  envir = .mock_disk_env)
+}
+
+
+
 mock_cloud_interface <- CloudInterface$new(
   get_fn = function(key, filename, params) {
     .mock_disk_env[[filename]] <- .mock_cloud_env[[key]]
