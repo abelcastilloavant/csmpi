@@ -7,7 +7,6 @@ clear_test_environments <- function() {
 }
 
 
-
 mock_cloud_interface <- CloudInterface$new(
   get_fn = function(key, filename, params) {
     .mock_disk_env[[filename]] <- .mock_cloud_env[[key]]
