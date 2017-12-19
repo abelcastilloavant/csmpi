@@ -29,6 +29,17 @@ identical(iris, iris2)
 
 ```
 
+### Hooks
+
+If you're trying to store non-native R objects, or you need certain things to happen when you read
+or write your R object, you can add read and write hooks to your object before storing it.
+
+To do so, add a list to the attribute `"csmpi.hooks"` of your object before writing it. This list
+should have a `read` function and a `write` function.
+
+This feature is analogous with `s3mpi:::s3normalize`, which is thoroughly documented
+[here](https://github.com/robertzk/s3mpi/blob/master/R/s3normalize.R)
+
 
 ## Mechanics
 
