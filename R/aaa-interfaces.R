@@ -28,11 +28,11 @@ DiskInterface <- R6::R6Class("DiskInterface",
       private$read_fn  <- read_fn
       private$write_fn <- write_fn
     },
-    read = function(tmpfile, params) {
-      private$read_fn(tmpfile, params)
+    read = function(filename, params) {
+      private$read_fn(filename, params)
     },
-    write = function(obj, tmpfile, params) {
-      private$write_fn(obj, tmpfile, params)
+    write = function(obj, filename, params) {
+      private$write_fn(obj, filename, params)
     }
   ),
   private = list(
