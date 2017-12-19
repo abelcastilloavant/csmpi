@@ -1,4 +1,5 @@
 context("test setup")
+
 test_that("mock environments were generated correctly", {
   expect_is(.mock_cloud_env, "environment")
   expect_is(.mock_disk_env, "environment")
