@@ -1,4 +1,4 @@
-#' Read an object from S3 into an R session.
+#' Read an object from S3 into an R session using s3cmd.
 #'
 #' This function will read an object from AWS S3 using
 #' s3cmd, download it to disk, and read it into the current
@@ -22,7 +22,7 @@ s3cmdread <- function(name, path = s3cmd_default_path(), storage_format = "RDS",
   csmpi_read(name, "s3cmd", storage_format, params)
 }
 
-#' Store an object from an R session to S3.
+#' Store an object from an R session to S3 using s3cmd.
 #'
 #' This function will write an object to a file on disk, and upload
 #' the file to AWS S3 using s3cmd.
@@ -41,7 +41,7 @@ s3cmdstore <- function(obj, name, path = s3cmd_default_path(), storage_format = 
   csmpi_write(obj, name, "s3cmd", storage_format, params, use_disk_cache = force, overwrite_disk_cache = force)
 }
 
-#' Check if an object exists in S3.
+#' Check if an object exists in S3 using s3cmd.
 #'
 #' This function will check if there is an object in AWS S3 with the given key.
 #' It will not check the integrity of the object - it will use s3cmd to check
