@@ -1,3 +1,7 @@
+# Version 0.0.10
+- Changed the name of a function to `csmpi_custom_exists` to avoid name conflicts with base
+  functions.
+
 # Version 0.0.9
 - Added documentation, exported functions and class definitions.
 

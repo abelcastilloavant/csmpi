@@ -4,7 +4,7 @@
 #' @inheritParams csmpi_exists
 #'
 #' @export
-exists <- function(key, cloud_interface, params) {
+csmpi_custom_exists <- function(key, cloud_interface, params) {
   cloud_interface$exists(key, params)
 }
 
