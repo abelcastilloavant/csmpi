@@ -27,7 +27,7 @@ with_mocked_disk_interface({
 
 clear_test_environments()
 
-if (require("cacher")) {
+if (requireNamespace("cacher")) {
   with_mocked_disk_interface({
     describe("read using in-session caching", {
       .mock_cloud_env[["x"]] <- 7
@@ -112,7 +112,7 @@ with_mocked_disk_interface({
       expect_equal(length(ls(.mock_disk_env)), 1)
     })
     .mock_cloud_env[["x"]] <- 8
-    if (require("cacher")) {
+    if (requireNamespace("cacher")) {
       write_to_session_cache(9, get_session_cache_key("x", "mock_cloud_interface", "mock_disk_interface"))
     }
     suppressMessages({

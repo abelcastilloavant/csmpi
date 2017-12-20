@@ -1,7 +1,7 @@
 Package: csmpi
 Type: Package
 Title: csmpi (http://github.com/abelcastilloavant/csmpi)
-Description: generic, extendable cloud storage MPI in R
+Description: Generic, extendable cloud storage MPI in R.
 Version: 0.0.9
 Author: Abel Castillo <abelcastillomath@gmail.com>
 Maintainer: Abel Castillo <abelcastillomath@gmail.com>
@@ -9,11 +9,12 @@ Authors@R: c(person("Abel", "Castillo",
     email = "abelcastillomath@gmail.com", role = c("aut", "cre")))
 Depends:
     R (>= 3.0.1)
-License: MIT
+License: MIT + file LICENSE
 LazyData: true
 Imports:
-    cacher,
-    digest (>= 0.6.12)
+    digest (>= 0.6.12),
+    evaluate,
+    methods
 Suggests:
     testthat,
     cacher (>= 0.1.0)

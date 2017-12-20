@@ -6,10 +6,9 @@ csmpi_custom_read_ <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", FALSE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
           num_retries = getOption("csmpi.num_retries", 3),
-          session_cache_key, disk_cache_filename,
           cloud_name_, storage_format_) {
 
-  if (isTRUE(use_session_cache) && !require("cacher")) {
+  if (isTRUE(use_session_cache) && !requireNamespace("cacher")) {
     warning("Cannot use session cache unless you install 'cacher' package from Github")
     use_session_cache <- FALSE
   }
@@ -75,7 +74,7 @@ csmpi_custom_read <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", TRUE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
           num_retries = getOption("csmpi.num_retries", 3),
-          session_cache_key, disk_cache_filename, cloud_name_, storage_format_) {
+          cloud_name_, storage_format_) {
 
   if (missing(cloud_name_)) {
     cloud_name_ <- deparse(substitute(cloud_interface))
@@ -85,7 +84,7 @@ csmpi_custom_read <- function(key, cloud_interface, disk_interface, params,
   }
 
   csmpi_custom_read_(key, cloud_interface, disk_interface, params, use_session_cache, use_disk_cache,
-        num_retries, session_cache_key, disk_cache_filename, cloud_name_, storage_format_)
+        num_retries, cloud_name_, storage_format_)
 }
 
 #' Read an R object to the cloud.
@@ -102,7 +101,7 @@ csmpi_read <- function(key, cloud_name, storage_format, params,
   cloud_interface     <- DEFAULT_CLOUD_INTERFACES[[cloud_name]]
   disk_interface      <- DEFAULT_DISK_INTERFACES[[storage_format]]
 
-  read(key, cloud_interface, disk_interface, params, use_session_cache, use_disk_cache,
-         num_retries, session_cache_key, disk_cache_filename, cloud_name, storage_format)
+  csmpi_custom_read(key, cloud_interface, disk_interface, params, use_session_cache, use_disk_cache,
+         num_retries, cloud_name, storage_format)
 }
 

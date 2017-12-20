@@ -10,7 +10,7 @@
 #'
 #' @param name simple string. The key used to store the object.
 #' @param path simple string. The s3 bucket where the object is stored.
-#' @param storage format simple string. The name of the disk interface in
+#' @param storage_format simple string. The name of the disk interface in
 #'   /code{DEFAULT_DISK_INTERFACES} to use to read the object from disk into
 #'   the R session.
 #' @param ... additional parameters to pass to interface objects via \code{params}.
@@ -32,6 +32,7 @@ s3cmdread <- function(name, path = s3cmd_default_path(), storage_format = "RDS",
 #' the only storage format is RDS, but expect there to be more of them later)
 #'
 #' @param obj ANY. The R object to store.
+#' @param force logical. Whether or not to overwrite the object in disk cache
 #' @inheritParams s3cmdread
 #'
 #' @export

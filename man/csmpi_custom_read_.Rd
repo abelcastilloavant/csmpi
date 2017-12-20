@@ -7,8 +7,8 @@
 csmpi_custom_read_(key, cloud_interface, disk_interface, params,
   use_session_cache = getOption("csmpi.use_session_cache", FALSE),
   use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
-  num_retries = getOption("csmpi.num_retries", 3), session_cache_key,
-  disk_cache_filename, cloud_name_, storage_format_)
+  num_retries = getOption("csmpi.num_retries", 3), cloud_name_,
+  storage_format_)
 }
 \arguments{
 \item{key}{simple string. The key to record the object with.}

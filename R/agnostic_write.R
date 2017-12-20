@@ -46,7 +46,7 @@ csmpi_custom_write <- function(obj, key, cloud_interface, disk_interface, params
     storage_format_ <- deparse(substitute(disk_interface))
   }
 
-  write_(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
+  csmpi_custom_write_(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
            overwrite_disk_cache, cloud_name_, storage_format_)
 }
 
@@ -74,7 +74,7 @@ csmpi_write <- function(obj, key, cloud_name, storage_format, params,
   cloud_interface     <- DEFAULT_CLOUD_INTERFACES[[cloud_name]]
   disk_interface      <- DEFAULT_DISK_INTERFACES[[storage_format]]
 
-  write(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
+  csmpi_custom_write(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
           overwrite_disk_cache, cloud_name, storage_format)
 }
 

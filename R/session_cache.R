@@ -1,4 +1,4 @@
-if (require("cacher")) {
+if (requireNamespace("cacher")) {
   session_cache <- cacher::LRUcache(getOption("csmpi.session_cache_size", 10))
 }
 
