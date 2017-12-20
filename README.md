@@ -94,13 +94,6 @@ You can specify the number of retries to use, and the amount of time to sleep be
 the options `csmpi.num_retries` and `csmpi.sleep_time`, respectively.
 
 
-## Future developments
-
-This package is a generalization of [s3mpi](https://github.com/robertzk/s3mpi/) - it is
-still under development, but the first development milestone is to replicate the functionality of
-"s3mpi".
-
-
 ## License
 
 This project is licensed under the MIT License:
@@ -125,3 +118,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+## Acknowledgements
+
+This project draws heavily on ideas from [s3mpi](https://github.com/robertzk/s3mpi/),
+thanks to Robert Krzyzanowski, Peter Hurford and Kirill Sevastyanenko for their work on that
+package.

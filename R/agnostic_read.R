@@ -37,7 +37,7 @@ read_ <- function(key, cloud_interface, disk_interface, params,
 
   if (`fetch_from_cloud?`(use_disk_cache, disk_cache_filename)) {
     message("reading ", key, " from ", cloud_name_)
-    handlr::with_retries({
+    with_retries({
       cloud_interface$get(key, filename, params)
     }, num_tries = num_retries, sleep = getOption("csmpi.sleep_time", 0.001))
   }
