@@ -22,24 +22,15 @@ write_ <- function(obj, key, cloud_interface, disk_interface, params,
 
 #' Write to the cloud using custom cloud and disk interfaces.
 #'
-#' @param obj ANY. The object to write to the cloud.
-#' @param key simple string. The key to record the object with.
 #' @param cloud_interface CloudInterface object. The cloud interface to use.
 #' @param disk_interface DiskInterface object. The disk interface to use.
-#' @param use_disk_cache logical. Whether or not to cache the object on disk.
-#'   Defaults to the option \code{csmpi.use_disk_cache}, or \code{FALSE} if
-#'   the option is not set.
-#' @param num_retries numeric. How many attempts to write before raising an error.
-#'   Defaults to the option \code{csmpi.num_retries}, or \code{3} if
-#'   the option is not set.
-#' @param overwrite_disk_cache logical. If the object is already cached on disk,
-#'   do we want to overwrite the cached copy?
 #' @param cloud_name_ simple_string. The name of the cloud interface, used to
 #'   create unique file names for caching. If not provided, will be computed
 #'   from the cloud interface using non-standard evaluation.
 #' @param storage_format_ simple_string. The name of the disk interface, used to
 #'   create unique file names for caching. If not provided, will be computed
 #'   from the disk interface using non-standard evaluation.
+#' @inheritParams csmpi_write
 #'
 #' @export
 write <- function(obj, key, cloud_interface, disk_interface, params,
