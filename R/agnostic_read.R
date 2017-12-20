@@ -1,8 +1,8 @@
 #' Non-NSE version of \code{read}.
-#' @inheritParams read
+#' @inheritParams csmpi_custom_read
 #' @inheritParams csmpi_read
 #' @inheritParams csmpi_write
-read_ <- function(key, cloud_interface, disk_interface, params,
+csmpi_custom_read_ <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", FALSE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
           num_retries = getOption("csmpi.num_retries", 3),
@@ -71,7 +71,7 @@ read_ <- function(key, cloud_interface, disk_interface, params,
 #' @inheritParams csmpi_write
 #'
 #' @export
-read <- function(key, cloud_interface, disk_interface, params,
+csmpi_custom_read <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", TRUE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
           num_retries = getOption("csmpi.num_retries", 3),
@@ -84,7 +84,7 @@ read <- function(key, cloud_interface, disk_interface, params,
     storage_format_ <- deparse(substitute(disk_interface))
   }
 
-  read_(key, cloud_interface, disk_interface, params, use_session_cache, use_disk_cache,
+  csmpi_custom_read_(key, cloud_interface, disk_interface, params, use_session_cache, use_disk_cache,
         num_retries, session_cache_key, disk_cache_filename, cloud_name_, storage_format_)
 }
 

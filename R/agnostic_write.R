@@ -1,7 +1,7 @@
 #' Non-NSE version of \code{write}.
-#' @inheritParams write
+#' @inheritParams csmpi_custom_write
 #' @inheritParams csmpi_write
-write_ <- function(obj, key, cloud_interface, disk_interface, params,
+csmpi_custom_write_ <- function(obj, key, cloud_interface, disk_interface, params,
             use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
             num_retries = getOption("csmpi.num_retries", 3),
             overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
@@ -34,7 +34,7 @@ write_ <- function(obj, key, cloud_interface, disk_interface, params,
 #' @inheritParams csmpi_write
 #'
 #' @export
-write <- function(obj, key, cloud_interface, disk_interface, params,
+csmpi_custom_write <- function(obj, key, cloud_interface, disk_interface, params,
            use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
            num_retries = getOption("csmpi.num_retries", 3),
            overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
