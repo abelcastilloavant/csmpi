@@ -59,6 +59,16 @@ interact with the cloud and the files in disk. We have two kinds of interfaces:
 * Cloud interfaces: these have `get`, `put`, and `exists` methods to interact with data from the cloud, and
 * Disk interfaces: these have `read` and `write` methods to interact with data on disk.
 
+To create a new interface for interactions with the cloud and for storage formats, use the initializing functions
+for the classes `CloudInterface` and `DiskInterface`, respectively:
+```r
+new_cloud_interface <- CloudInterface$new(new_get_fn, new_put_fn, new_exists_fn)
+new_disk_interface <- DiskInterface$new(new_read_fn, new_write_fn)
+write(iris, "key_to_new_object", new_cloud_interface, new_disk_interface)
+iris2 <- read("key_to_new_object", new_cloud_interface, new_disk_interface)
+identical(iris, iris2)
+# Hopefully `TRUE`!
+```
 
 ### Caching
 
