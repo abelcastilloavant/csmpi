@@ -1,4 +1,4 @@
-context("read")
+context("read functions")
 
 clear_test_environments()
 
@@ -6,7 +6,7 @@ with_mocked_disk_interface({
   describe("read without caching", {
     .mock_cloud_env[["x"]] <- 7
     suppressMessages({
-      actual_value <- read(
+      actual_value <- csmpi_custom_read(
         key               = "x",
         cloud_interface   = mock_cloud_interface,
         disk_interface    = mock_disk_interface,
@@ -32,7 +32,7 @@ if (require("cacher")) {
     describe("read using in-session caching", {
       .mock_cloud_env[["x"]] <- 7
       suppressMessages({
-        actual_value <- read(
+        actual_value <- csmpi_custom_read(
           key = "x",
           cloud_interface   = mock_cloud_interface,
           disk_interface    = mock_disk_interface,
@@ -50,7 +50,7 @@ if (require("cacher")) {
       })
       .mock_cloud_env[["x"]] <- 8
       suppressMessages({
-        actual_value <- read(
+        actual_value <- csmpi_custom_read(
           key               = "x",
           cloud_interface   = mock_cloud_interface,
           disk_interface    = mock_disk_interface,
@@ -68,7 +68,7 @@ if (require("cacher")) {
       })
       write_to_session_cache(9, get_session_cache_key("x", "mock_cloud_interface", "mock_disk_interface"))
       suppressMessages({
-        actual_value <- read(
+        actual_value <- csmpi_custom_read(
           key               = "x",
           cloud_interface   = mock_cloud_interface,
           disk_interface    = mock_disk_interface,
@@ -95,7 +95,7 @@ with_mocked_disk_interface({
   describe("read using disk caching", {
     .mock_cloud_env[["x"]] <- 7
     suppressMessages({
-      actual_value <- read(
+      actual_value <- csmpi_custom_read(
         key               = "x",
         cloud_interface   = mock_cloud_interface,
         disk_interface    = mock_disk_interface,
@@ -116,7 +116,7 @@ with_mocked_disk_interface({
       write_to_session_cache(9, get_session_cache_key("x", "mock_cloud_interface", "mock_disk_interface"))
     }
     suppressMessages({
-      actual_value <- read(
+      actual_value <- csmpi_custom_read(
         key               = "x",
         cloud_interface   = mock_cloud_interface,
         disk_interface    = mock_disk_interface,
