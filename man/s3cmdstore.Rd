@@ -14,7 +14,13 @@ s3cmdstore(obj, name, path = s3cmd_default_path(), storage_format = "RDS",
 
 \item{path}{simple string. The s3 bucket where the object is stored.}
 
+\item{storage_format}{simple string. The name of the disk interface in
+/code{DEFAULT_DISK_INTERFACES} to use to read the object from disk into
+the R session.}
+
 \item{...}{additional parameters to pass to interface objects via \code{params}.}
+
+\item{force}{logical. Whether or not to overwrite the object in disk cache}
 }
 \description{
 This function will write an object to a file on disk, and upload

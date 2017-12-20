@@ -11,11 +11,11 @@ s3cmdread(name, path = s3cmd_default_path(), storage_format = "RDS", ...)
 
 \item{path}{simple string. The s3 bucket where the object is stored.}
 
-\item{...}{additional parameters to pass to interface objects via \code{params}.}
-
-\item{storage}{format simple string. The name of the disk interface in
+\item{storage_format}{simple string. The name of the disk interface in
 /code{DEFAULT_DISK_INTERFACES} to use to read the object from disk into
 the R session.}
+
+\item{...}{additional parameters to pass to interface objects via \code{params}.}
 }
 \description{
 This function will read an object from AWS S3 using

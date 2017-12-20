@@ -1,4 +1,4 @@
-context("write")
+context("write functions")
 
 clear_test_environments()
 
@@ -10,7 +10,7 @@ with_mocked_disk_interface({
   describe("writing without caching", {
     expect_null(.mock_cloud_env[["x"]])
     suppressMessages({
-      write(
+      csmpi_custom_write(
         obj                  = df,
         key                  = "x",
         cloud_interface      = mock_cloud_interface,
@@ -38,7 +38,7 @@ with_mocked_disk_interface({
     mock_filename <- get_disk_cache_filename("x", "mock_cloud_interface", "mock_disk_interface")
     expect_null(.mock_cloud_env[["x"]])
     suppressMessages({
-      write(
+      csmpi_custom_write(
         obj                  = df,
         key                  = "x",
         cloud_interface      = mock_cloud_interface,
@@ -57,7 +57,7 @@ with_mocked_disk_interface({
     })
 
     suppressMessages({
-      write(
+      csmpi_custom_write(
         obj                  = df2,
         key                  = "x",
         cloud_interface      = mock_cloud_interface,
@@ -77,7 +77,7 @@ with_mocked_disk_interface({
     })
 
     suppressMessages({
-      write(
+      csmpi_custom_write(
         obj                  = df3,
         key                  = "x",
         cloud_interface      = mock_cloud_interface,

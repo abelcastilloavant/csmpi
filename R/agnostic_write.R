@@ -1,7 +1,7 @@
 #' Non-NSE version of \code{write}.
-#' @inheritParams write
+#' @inheritParams csmpi_custom_write
 #' @inheritParams csmpi_write
-write_ <- function(obj, key, cloud_interface, disk_interface, params,
+csmpi_custom_write_ <- function(obj, key, cloud_interface, disk_interface, params,
             use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
             num_retries = getOption("csmpi.num_retries", 3),
             overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
@@ -16,7 +16,7 @@ write_ <- function(obj, key, cloud_interface, disk_interface, params,
   }
 
   disk_interface$write(use_write_hook(obj), filename, params)
-  handlr::with_retries({
+  with_retries({
     cloud_interface$put(key, filename, params)
   }, num_tries = num_retries, sleep = getOption("csmpi.sleep_time", 0.001))
 }
@@ -34,7 +34,7 @@ write_ <- function(obj, key, cloud_interface, disk_interface, params,
 #' @inheritParams csmpi_write
 #'
 #' @export
-write <- function(obj, key, cloud_interface, disk_interface, params,
+csmpi_custom_write <- function(obj, key, cloud_interface, disk_interface, params,
            use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
            num_retries = getOption("csmpi.num_retries", 3),
            overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
@@ -46,7 +46,7 @@ write <- function(obj, key, cloud_interface, disk_interface, params,
     storage_format_ <- deparse(substitute(disk_interface))
   }
 
-  write_(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
+  csmpi_custom_write_(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
            overwrite_disk_cache, cloud_name_, storage_format_)
 }
 
@@ -74,7 +74,7 @@ csmpi_write <- function(obj, key, cloud_name, storage_format, params,
   cloud_interface     <- DEFAULT_CLOUD_INTERFACES[[cloud_name]]
   disk_interface      <- DEFAULT_DISK_INTERFACES[[storage_format]]
 
-  write(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
+  csmpi_custom_write(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
           overwrite_disk_cache, cloud_name, storage_format)
 }
 

@@ -1,1 +1,1 @@
-test_check("csmpi")
+testthat::test_check("csmpi")

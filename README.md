@@ -78,7 +78,10 @@ cacing in-session and on-disk, which can be toggled by setting the options `csmp
 and `csmpi.use_disk_cache`, respectively, to `TRUE`.
 
 In-session caching uses [least-recently-used in-memory caching](https://github.com/kirillseva/cacher)
-to store data in memory. On-disk caching writes data to disk, to a folder specified by the option
+to store data in memory. Note that this uses an R package that is not available on CRAN - if you do
+not have `cacher` installed, in-session caching will be disabled.
+
+On-disk caching writes data to disk, to a folder specified by the option
 `csmpi.disk_cache_dir`.
 
 The write operation writes to the disk cache if the option `csmpi.use_disk_cache` is set to `TRUE`.
@@ -92,13 +95,6 @@ the read and write process that interact with the cloud.
 
 You can specify the number of retries to use, and the amount of time to sleep between retries, with
 the options `csmpi.num_retries` and `csmpi.sleep_time`, respectively.
-
-
-## Future developments
-
-This package is a generalization of [s3mpi](https://github.com/robertzk/s3mpi/) - it is
-still under development, but the first development milestone is to replicate the functionality of
-"s3mpi".
 
 
 ## License
@@ -125,3 +121,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+## Acknowledgements
+
+This project draws heavily on ideas from [s3mpi](https://github.com/robertzk/s3mpi/),
+thanks to Robert Krzyzanowski, Peter Hurford and Kirill Sevastyanenko for their work on that
+package.
