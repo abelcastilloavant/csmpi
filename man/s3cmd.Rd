@@ -29,8 +29,6 @@ exists_using_s3cmd(key, params)
 
 \item{filename}{simple string. The file to read/write to on
 disk when reading/writing from S3.}
-
-\item{obj}{ANY. The object to write to S3.}
 }
 \description{
 Tooling for s3cmd interface.

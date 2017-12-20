@@ -1,13 +1,11 @@
 #' Tooling for s3cmd interface.
 #'
 #' @param key simple string. The key to read/write to in S3.
-#' @param obj ANY. The object to write to S3.
 #' @param filename simple string. The file to read/write to on
 #'   disk when reading/writing from S3.
 #' @param params list. Addiitonal parameters to pass to read/write functions.
 #'
 #' @name s3cmd
-
 
 #' @rdname s3cmd
 which_s3cmd <- function() {
