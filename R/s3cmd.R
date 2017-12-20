@@ -4,7 +4,7 @@
 #' @param obj ANY. The object to write to S3.
 #' @param filename simple string. The file to read/write to on
 #'   disk when reading/writing from S3.
-#' @para params list. Addiitonal parameters to pass to read/write functions.
+#' @param params list. Addiitonal parameters to pass to read/write functions.
 #'
 #' @name s3cmd
 
