@@ -9,7 +9,7 @@ read_ <- function(key, cloud_interface, disk_interface, params,
           session_cache_key, disk_cache_filename,
           cloud_name_, storage_format_) {
 
-  if (isTRUE(use_session_cache)) && !require("cacher") {
+  if (isTRUE(use_session_cache) && !require("cacher")) {
     warning("Cannot use session cache unless you install 'cacher' package from Github")
     use_session_cache <- FALSE
   }

@@ -52,7 +52,6 @@ with_retries <- function(expr, num_tries = 1, sleep= 0.001) {
 #' @param envir environment. The environment to fetch values to use in interpolation.
 #' @param sep character. Passed into the \code{collapse} argument of \code{base::paste}.
 #' @param collapse character. Passed into the \code{collapse} argument of \code{base::paste}.
-#' @export
 pp <- function(..., envir = parent.frame(), sep = '', collapse = '') {
   string <- list(...)
   if (length(string) > 1)

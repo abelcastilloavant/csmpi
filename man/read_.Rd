@@ -5,7 +5,7 @@
 \title{Non-NSE version of \code{read}.}
 \usage{
 read_(key, cloud_interface, disk_interface, params,
-  use_session_cache = getOption("csmpi.use_session_cache", TRUE),
+  use_session_cache = getOption("csmpi.use_session_cache", FALSE),
   use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
   num_retries = getOption("csmpi.num_retries", 3), session_cache_key,
   disk_cache_filename, cloud_name_, storage_format_)
