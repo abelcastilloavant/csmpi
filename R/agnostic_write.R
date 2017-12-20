@@ -1,5 +1,6 @@
 #' Non-NSE version of \code{write}.
 #' @inheritParams write
+#' @inheritParams csmpi_write
 write_ <- function(obj, key, cloud_interface, disk_interface, params,
             use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
             num_retries = getOption("csmpi.num_retries", 3),
@@ -55,6 +56,7 @@ write <- function(obj, key, cloud_interface, disk_interface, params,
 #' @param key simple string. The key to record the object with.
 #' @param cloud_name simple string. The name of the cloud interface to use.
 #' @param storage_format simple_string. The name of the disk interface to use.
+#' @param params list. Additional arguments to pass to interface methods.
 #' @param use_disk_cache logical. Whether or not to cache the object on disk.
 #'   Defaults to the option \code{csmpi.use_disk_cache}, or \code{FALSE} if
 #'   the option is not set.

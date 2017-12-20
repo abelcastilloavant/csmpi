@@ -16,6 +16,8 @@ csmpi_read(key, cloud_name, storage_format, params,
 
 \item{storage_format}{simple_string. The name of the disk interface to use.}
 
+\item{params}{list. Additional arguments to pass to interface methods.}
+
 \item{use_session_cache}{logical. Whether or not to cache the object in memory.
 Defaults to the option \code{csmpi.use_session_cache}, or \code{FALSE} if
 the option is not set.}

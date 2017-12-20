@@ -18,6 +18,8 @@ csmpi_write(obj, key, cloud_name, storage_format, params,
 
 \item{storage_format}{simple_string. The name of the disk interface to use.}
 
+\item{params}{list. Additional arguments to pass to interface methods.}
+
 \item{use_disk_cache}{logical. Whether or not to cache the object on disk.
 Defaults to the option \code{csmpi.use_disk_cache}, or \code{FALSE} if
 the option is not set.}

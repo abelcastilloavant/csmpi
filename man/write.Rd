@@ -18,6 +18,8 @@ write(obj, key, cloud_interface, disk_interface, params,
 
 \item{disk_interface}{DiskInterface object. The disk interface to use.}
 
+\item{params}{list. Additional arguments to pass to interface methods.}
+
 \item{use_disk_cache}{logical. Whether or not to cache the object on disk.
 Defaults to the option \code{csmpi.use_disk_cache}, or \code{FALSE} if
 the option is not set.}

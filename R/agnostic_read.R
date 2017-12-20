@@ -1,5 +1,7 @@
 #' Non-NSE version of \code{read}.
 #' @inheritParams read
+#' @inheritParams csmpi_read
+#' @inheritParams csmpi_write
 read_ <- function(key, cloud_interface, disk_interface, params,
           use_session_cache = getOption("csmpi.use_session_cache", TRUE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
@@ -60,6 +62,7 @@ read_ <- function(key, cloud_interface, disk_interface, params,
 #'   create unique file names for caching. If not provided, will be computed
 #'   from the disk interface using non-standard evaluation.
 #' @inheritParams csmpi_read
+#' @inheritParams csmpi_write
 #'
 #' @export
 read <- function(key, cloud_interface, disk_interface, params,
