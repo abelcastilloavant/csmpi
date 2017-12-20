@@ -1,3 +1,6 @@
+# Version 0.0.9
+- Added documentation, exported functions and class definitions.
+
 # Version 0.0.8
 - Allow use of read/write hooks stored in object attribute `csmpi.hooks`. In particular, this allows
   users to read/write non-native R objects to the cloud by clever use of hooks.
