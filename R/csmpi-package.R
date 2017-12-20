@@ -1,6 +1,6 @@
 #' generic, extendable cloud storage MPI in R
 #'
 #' @name csmpi
-#' @import cacher digest productivus
+#' @import cacher
 #' @docType package
 NULL
