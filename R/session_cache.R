@@ -1,4 +1,6 @@
-session_cache <- cacher::LRUcache(getOption("csmpi.session_cache_size", 10))
+if (require("cacher")) {
+  session_cache <- cacher::LRUcache(getOption("csmpi.session_cache_size", 10))
+}
 
 get_session_cache_key <- function(key, cloud_name, storage_format) {
   digest::digest(list(key = key, cloud_name = cloud_name, storage_format = storage_format))

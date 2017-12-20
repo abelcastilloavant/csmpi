@@ -78,7 +78,10 @@ cacing in-session and on-disk, which can be toggled by setting the options `csmp
 and `csmpi.use_disk_cache`, respectively, to `TRUE`.
 
 In-session caching uses [least-recently-used in-memory caching](https://github.com/kirillseva/cacher)
-to store data in memory. On-disk caching writes data to disk, to a folder specified by the option
+to store data in memory. Note that this uses an R package that is not available on CRAN - if you do
+not have `cacher` installed, in-session caching will be disabled.
+
+On-disk caching writes data to disk, to a folder specified by the option
 `csmpi.disk_cache_dir`.
 
 The write operation writes to the disk cache if the option `csmpi.use_disk_cache` is set to `TRUE`.

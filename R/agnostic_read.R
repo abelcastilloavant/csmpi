@@ -3,15 +3,21 @@
 #' @inheritParams csmpi_read
 #' @inheritParams csmpi_write
 read_ <- function(key, cloud_interface, disk_interface, params,
-          use_session_cache = getOption("csmpi.use_session_cache", TRUE),
+          use_session_cache = getOption("csmpi.use_session_cache", FALSE),
           use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
           num_retries = getOption("csmpi.num_retries", 3),
           session_cache_key, disk_cache_filename,
           cloud_name_, storage_format_) {
 
+  if (isTRUE(use_session_cache)) && !require("cacher") {
+    warning("Cannot use session cache unless you install 'cacher' package from Github")
+    use_session_cache <- FALSE
+  }
+
   if (isTRUE(use_session_cache) && isTRUE(use_disk_cache)) {
     stop("Both 'use_session_cache' and 'use_disk_cache' are TRUE - we currently do not allow this.")
   }
+
 
   session_cache_key   <- get_session_cache_key(key, cloud_name_, storage_format_)
   disk_cache_filename <- get_disk_cache_filename(key, cloud_name_, storage_format_)
