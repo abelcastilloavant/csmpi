@@ -1,5 +1,5 @@
 #' Non-NSE version of \code{write}.
-#' @interitParams write
+#' @inheritParams write
 write_ <- function(obj, key, cloud_interface, disk_interface, params,
             use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
             num_retries = getOption("csmpi.num_retries", 3),
