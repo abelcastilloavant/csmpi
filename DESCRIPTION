@@ -13,11 +13,9 @@ License: MIT
 LazyData: true
 Imports:
     cacher,
-    digest (>= 0.6.12),
-    productivus (>= 0.1.1)
+    digest (>= 0.6.12)
 Suggests:
     testthat
-Remotes: kirillseva/cacher@0.1.0,
-    robertzk/productivus@0.1.3
+Remotes: kirillseva/cacher@0.1.0
 Roxygen: list(wrap = FALSE)
 RoxygenNote: 5.0.0
