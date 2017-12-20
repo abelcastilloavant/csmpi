@@ -35,8 +35,6 @@ CloudInterface <- R6::R6Class("CloudInterface",
   )
 )
 
-
-
 #' Class of objects for interacting with objects downloaded to disk from the cloud.
 #'
 #' A DiskInterface objects holds methods for reading and writing objects from disk in

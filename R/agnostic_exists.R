@@ -1,9 +1,7 @@
 #' Check if an object exits in the cloud with a custom cloud interface.
 #'
-#' @param key simple string. The key under which the object is stored.
 #' @param cloud_interface CloudInterface object. The cloud interface to use.
-#' @param params list. Additional params for the cloud interface's \code{exists}
-#'   method.
+#' @inheritParams csmpi_exists
 #'
 #' @export
 exists <- function(key, cloud_interface, params) {
