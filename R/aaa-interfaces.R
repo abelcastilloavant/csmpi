@@ -9,6 +9,15 @@
 #' @param get_fn function. Used to get an object from the cloud.
 #' @param put_fn function. Used to put an object to the cloud.
 #' @param exists_fn function. Used to check if an object exists in the cloud.
+#' @examples \dontrun{
+#'   s3cmd <- CloudInterface$new(get_fn, put_fn, exists_fn)
+#'   # read an object from S3 to disk
+#'   s3cmd$get("path/to/iris", "~/files/iris.RDS")
+#'   # write a file from disk to S3
+#'   s3cmd$put("~/files/df2.RDS", "path/to/df2")
+#'   # check if a key exists in S3
+#'   s3cmd$exists("path/to/existing/file")
+#' }
 #'
 #' @export
 CloudInterface <- R6::R6Class("CloudInterface",
@@ -43,6 +52,13 @@ CloudInterface <- R6::R6Class("CloudInterface",
 #'
 #' @param read_fn function. Used to read objects from disk to R.
 #' @param write_fn function. Used to write objects from R to disk.
+#' @examples \dontrun{
+#'   RDS <- DiskInterface$new(read_fn, write_fn)
+#'   # read an RDS file into R
+#'   df <- RDS$read("~/files/df.RDS")
+#'   # write an object to an RDS file
+#'   RDS$write(df2, "~/files/df2.RDS")
+#' }
 #'
 #' @export
 DiskInterface <- R6::R6Class("DiskInterface",

@@ -22,5 +22,17 @@ objects are stored in some kind of key/value structure with one-to-one
 correspondence. We also assume that you are using disk space as an intermediary
 between the cloud storage system and your R session.
 }
+\examples{
+\dontrun{
+  s3cmd <- CloudInterface$new(get_fn, put_fn, exists_fn)
+  # read an object from S3 to disk
+  s3cmd$get("path/to/iris", "~/files/iris.RDS")
+  # write a file from disk to S3
+  s3cmd$put("~/files/df2.RDS", "path/to/df2")
+  # check if a key exists in S3
+  s3cmd$exists("path/to/existing/file")
+}
+
+}
 \keyword{datasets}
 

@@ -18,5 +18,15 @@ A DiskInterface objects holds methods for reading and writing objects from disk 
 a particular format.  We assume that your "disk" is your local disk, as we use
 base R functions such as \code{file.exists} to interact with objects.
 }
+\examples{
+\dontrun{
+  RDS <- DiskInterface$new(read_fn, write_fn)
+  # read an RDS file into R
+  df <- RDS$read("~/files/df.RDS")
+  # write an object to an RDS file
+  RDS$write(df2, "~/files/df2.RDS")
+}
+
+}
 \keyword{datasets}
 
