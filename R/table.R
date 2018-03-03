@@ -7,7 +7,11 @@ write_table <- function(obj, filename, params) {
   if (!is.data.frame(obj)) {
     stop("Object provided is not a dataframe, cannot write to table format.")
   }
-  args <- list(obj, filename, params, stringsAsFactors = FALSE)
+
+  params                  <- subset_by_function(read.table, params)
+  params$stringsAsFactors <- FALSE
+  args                    <- list(obj, filename, params)
+
   do.call(write.table, args)
 }
 
