@@ -16,7 +16,7 @@
 #' @param ... additional parameters to pass to interface objects via \code{params}.
 #'
 #' @export
-s3cmdread <- function(name, path = s3cmd_default_path(), storage_format = "RDS", ...) {
+s3cmd_read <- function(name, path = s3cmd_default_path(), storage_format = "RDS", ...) {
   params <- list(...)
   params$bucket_name <- path
   csmpi_read(name, "s3cmd", storage_format, params)
@@ -33,10 +33,10 @@ s3cmdread <- function(name, path = s3cmd_default_path(), storage_format = "RDS",
 #'
 #' @param obj ANY. The R object to store.
 #' @param force logical. Whether or not to overwrite the object in disk cache
-#' @inheritParams s3cmdread
+#' @inheritParams s3cmd_read
 #'
 #' @export
-s3cmdstore <- function(obj, name, path = s3cmd_default_path(), storage_format = "RDS", ..., force = FALSE) {
+s3cmd_store <- function(obj, name, path = s3cmd_default_path(), storage_format = "RDS", ..., force = FALSE) {
   params <- list(...)
   params$bucket_name <- path
   csmpi_write(obj, name, "s3cmd", storage_format, params, use_disk_cache = force, overwrite_disk_cache = force)
@@ -48,10 +48,10 @@ s3cmdstore <- function(obj, name, path = s3cmd_default_path(), storage_format = 
 #' It will not check the integrity of the object - it will use s3cmd to check
 #' if there is an object with that name.
 #'
-#' @inheritParams s3cmdread
+#' @inheritParams s3cmd_read
 #'
 #' @export
-s3cmdexists <- function(name, path = s3cmd_default_path(), ...) {
+s3cmd_exists <- function(name, path = s3cmd_default_path(), ...) {
   params <- list(...)
   params$bucket_name <- path
   csmpi_exists(name, "s3cmd", params)
