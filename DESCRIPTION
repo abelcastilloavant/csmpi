@@ -15,7 +15,8 @@ Imports:
     digest (>= 0.6.12),
     evaluate,
     methods,
-    R6
+    R6,
+    jsonlite (>= 1.5)
 Suggests:
     testthat,
     cacher (>= 0.1.0)
