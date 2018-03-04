@@ -29,4 +29,3 @@ base R functions such as \code{file.exists} to interact with objects.
 
 }
 \keyword{datasets}
-

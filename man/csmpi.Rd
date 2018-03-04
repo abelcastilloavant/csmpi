@@ -8,4 +8,3 @@
 \description{
 generic, extendable cloud storage MPI in R
 }
-

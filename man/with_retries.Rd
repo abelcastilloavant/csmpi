@@ -19,4 +19,3 @@ TRUE if the expression gets evaluated successfully on some attempt.
 \description{
 Lifted from \code{https://github.com/peterhurford/handlr/blob/master/R/try_stack.R}
 }
-

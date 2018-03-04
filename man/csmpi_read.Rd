@@ -33,4 +33,3 @@ the option is not set.}
 \description{
 Read an R object to the cloud.
 }
-

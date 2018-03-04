@@ -42,4 +42,3 @@ from the disk interface using non-standard evaluation.}
 \description{
 Non-NSE version of \code{write}.
 }
-
