@@ -18,7 +18,7 @@ csmpi_custom_read_ <- function(key, cloud_interface, disk_interface, params,
   }
 
   if (isTRUE(use_session_cache) && `in_session_cache?`(session_cache_key)) {
-    session_cache_key   <- get_session_cache_key(key, cloud_name_, storage_format_)
+    session_cache_key <- get_session_cache_key(key, cloud_name_, storage_format_)
     message("reading ", key, " from session cache")
     return(read_from_session_cache(session_cache_key))
   }
@@ -40,7 +40,7 @@ csmpi_custom_read_ <- function(key, cloud_interface, disk_interface, params,
 
   if (isTRUE(use_session_cache)) {
     message("writing ", key, " to session cache")
-    write_to_session_cache(obj, session_cache_key)
+    write_to_session_cache(obj, get_session_cache_key(key, cloud_name_, storage_format_))
   }
   obj
 }
