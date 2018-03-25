@@ -4,5 +4,5 @@ get_disk_cache_filename <- function(key, cloud_name, storage_format) {
 }
 
 `fetch_from_cloud?` <- function(use_disk_cache, filename) {
-  !(isTRUE(use_disk_cache) && file.exists(filename))
+  !isTRUE(use_disk_cache) && !file.exists(filename)
 }
