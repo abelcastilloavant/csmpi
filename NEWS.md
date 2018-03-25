@@ -1,3 +1,7 @@
+# Version 0.0.11
+- Renamed s3cmd wrapper functions.
+- Added storage formats for writing tables/CSV's, json objects, and plaintext.
+
 # Version 0.0.10
 - Changed the name of a function to `csmpi_custom_exists` to avoid name conflicts with base
   functions.

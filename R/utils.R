@@ -1,6 +1,5 @@
 `%||%` <- function(x, y) { if (is.null(x)) { y } else { x } }
 
-
 #' Try evaluating an expression multiple times before erroring.
 #'
 #' Lifted from \code{https://github.com/peterhurford/handlr/blob/master/R/try_stack.R}
@@ -28,9 +27,6 @@ with_retries <- function(expr, num_tries = 1, sleep= 0.001) {
     out
   }
 }
-
-
-
 
 #' Ruby-style string interpolation
 #'
@@ -79,4 +75,12 @@ pp <- function(..., envir = parent.frame(), sep = '', collapse = '') {
   }
   buildstr <- append(buildstr, substr(string, last, nchar(string)))
   paste(buildstr, collapse = '')
+}
+
+get_function_arguments <- function(fn) {
+  names(as.list(args(fn)))
+}
+
+subset_by_function <- function(fn, lst) {
+  lst[intersect(names(lst), get_function_arguments(fn))]
 }

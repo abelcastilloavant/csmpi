@@ -17,4 +17,3 @@ method.}
 \description{
 Check if an object exits in the cloud with a custom cloud interface.
 }
-

@@ -19,11 +19,11 @@ the CLI tool `s3cmd`, and reading/writing files RDS files. There are two wrapper
 and `s3cmdstore`:
 ```r
 library(csmpi)
-s3cmdstore(iris, "temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
+s3cmd_store(iris, "temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
 
 # later, from another R session
 library(csmpi)
-iris2 <- s3cmdread("temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
+iris2 <- s3cmd_read("temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
 identical(iris, iris2)
 # [1] TRUE
 

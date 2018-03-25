@@ -34,4 +34,3 @@ do we want to overwrite the cached copy?}
 \description{
 Write an R object to the cloud.
 }
-

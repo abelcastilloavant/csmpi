@@ -42,4 +42,3 @@ from the disk interface using non-standard evaluation.}
 \description{
 Read from the cloud using custom cloud and disk interfaces.
 }
-

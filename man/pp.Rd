@@ -31,4 +31,3 @@ Lifted from https://github.com/robertzk/productivus/blob/master/R/pp.R
   pp("if we declare an environment, we see that x is ${x} there", envir = .small_env)
 }
 }
-

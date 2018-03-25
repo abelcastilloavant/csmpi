@@ -42,4 +42,3 @@ from the disk interface using non-standard evaluation.}
 \description{
 Write to the cloud using custom cloud and disk interfaces.
 }
-

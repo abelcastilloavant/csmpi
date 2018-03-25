@@ -3,5 +3,8 @@ DEFAULT_CLOUD_INTERFACES <- list(
 )
 
 DEFAULT_DISK_INTERFACES <- list(
-  "RDS" = rds_interface
+  "RDS"       = rds_interface,
+  "table"     = table_interface,
+  "json"      = json_interface,
+  "plaintext" = plaintext_interface
 )
