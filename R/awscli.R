@@ -28,21 +28,21 @@ options_for_awscli_command <- function(params) {
 #' @rdname awscli
 get_using_awscli <- function(key, filename, params) {
   cmd <- paste(which_command("awscli"), "s3", "cp")
-  system(pp('#{cmd} #{key} #{filename}',
+  system(pp('#{cmd} #{params$bucket_name}/#{key} #{filename}',
     '#{options_for_awscli_command(params)'))
 }
 
 #' @rdname awscli
 put_using_awscli <- function(key, filename, params) {
   cmd <- paste(which_command("awscli"), "s3", "cp")
-  system(pp('#{cmd} #{filename} #{key}',
+  system(pp('#{cmd} #{filename} #{params$bucket_name}/#{key}',
     '#{options_for_awscli_command(params)'))
 }
 
 #' @rdname awscli
 exists_using_awscli <- function(key, params) {
   cmd <- paste(which_command("awscli"), "s3", "ls")
-  result <- system(pp('#{cmd} #{filename}',
+  result <- system(pp('#{cmd} #{params$bucket_name}/#{key}',
               '#{options_for_awscli_command(params)'))
   sum(grepl(paste0(basename(name), "$"), results)) > 0
 }

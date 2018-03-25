@@ -1,6 +1,6 @@
 DEFAULT_CLOUD_INTERFACES <- list(
-  "s3cmd" = s3cmd_interface,
-  "aws"   = awscli_interface
+  "s3cmd"  = s3cmd_interface,
+  "awscli" = awscli_interface
 )
 
 DEFAULT_DISK_INTERFACES <- list(

@@ -1,3 +1,6 @@
+# Version 0.1.0
+- Added support for AWS S3 via `aws` with the `awscli` cloud interface.
+
 # Version 0.0.12
 - Fixed bugs in `agnostic_read` and `agnostic_write` functions.
 - Better parameter handling for s3cmd.
