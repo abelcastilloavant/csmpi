@@ -4,7 +4,9 @@
 csmpi_custom_write_ <- function(obj, key, cloud_interface, disk_interface, params,
             use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
             num_retries = getOption("csmpi.num_retries", 3),
-            overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
+            overwrite_disk_cache = FALSE,
+            overwrite_cloud_object = getOption("csmpi.force_write", TRUE),
+            cloud_name_, storage_format_) {
 
   filename      <- get_disk_cache_filename(key, cloud_name_, storage_format_)
   use_temp_file <- `disk_cache_available?`(use_disk_cache, filename, overwrite_disk_cache)
@@ -15,8 +17,17 @@ csmpi_custom_write_ <- function(obj, key, cloud_interface, disk_interface, param
 
   disk_interface$write(use_write_hook(obj), filename, params)
   with_retries({
+    if (!isTRUE(overwrite_cloud_object) && cloud_interface$exists(key)) {
+      stop("cannot write to key ", key, "because object already exists and "
+           "`overwrite_cloud_object` is not set to TRUE.")
+    }
     cloud_interface$put(key, filename, params)
   }, num_tries = num_retries, sleep = getOption("csmpi.sleep_time", 0.001))
+
+  if (!cloud_interface$exists(key) {
+    stop("Cannot confirm that " cloud_name_, "successfully put an object in ", key)
+  }
+  return(TRUE)
 }
 
 #' Write to the cloud using custom cloud and disk interfaces.
@@ -35,7 +46,9 @@ csmpi_custom_write_ <- function(obj, key, cloud_interface, disk_interface, param
 csmpi_custom_write <- function(obj, key, cloud_interface, disk_interface, params,
            use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
            num_retries = getOption("csmpi.num_retries", 3),
-           overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
+           overwrite_disk_cache = FALSE,
+           overwrite_cloud_object = getOption("csmpi.force_write", TRUE),
+           cloud_name_, storage_format_) {
 
   if (missing(cloud_name_)) {
     cloud_name_ <- deparse(substitute(cloud_interface))
@@ -45,7 +58,7 @@ csmpi_custom_write <- function(obj, key, cloud_interface, disk_interface, params
   }
 
   csmpi_custom_write_(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
-           overwrite_disk_cache, cloud_name_, storage_format_)
+           overwrite_disk_cache, overwrite_cloud_object, cloud_name_, storage_format_)
 }
 
 #' Write an R object to the cloud.
@@ -63,16 +76,19 @@ csmpi_custom_write <- function(obj, key, cloud_interface, disk_interface, params
 #'   the option is not set.
 #' @param overwrite_disk_cache logical. If the object is already cached on disk,
 #'   do we want to overwrite the cached copy?
+#' @param overwite_cloud_object logical. If the key already exists in the cloud,
+#'   do we want to overwrite it with the current object?
 #'
 #' @export
 csmpi_write <- function(obj, key, cloud_name, storage_format, params,
                  use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
                  num_retries = getOption("csmpi.num_retries", 3),
-                 overwrite_disk_cache = FALSE) {
+                 overwrite_disk_cache = FALSE,
+                 overwrite_cloud_object = getOption("csmpi.force_write", TRUE)) {
   cloud_interface     <- DEFAULT_CLOUD_INTERFACES[[cloud_name]]
   disk_interface      <- DEFAULT_DISK_INTERFACES[[storage_format]]
 
   csmpi_custom_write(obj, key, cloud_interface, disk_interface, params, use_disk_cache, num_retries,
-          overwrite_disk_cache, cloud_name, storage_format)
+          overwrite_disk_cache, overwrite_cloud_object, cloud_name, storage_format)
 }
 
