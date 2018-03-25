@@ -6,12 +6,10 @@ csmpi_custom_write_ <- function(obj, key, cloud_interface, disk_interface, param
             num_retries = getOption("csmpi.num_retries", 3),
             overwrite_disk_cache = FALSE, cloud_name_, storage_format_) {
 
-  filename <- get_disk_cache_filename(key, cloud_name_, storage_format_)
+  filename      <- get_disk_cache_filename(key, cloud_name_, storage_format_)
+  use_temp_file <- `disk_cache_available?`(use_disk_cache, filename, overwrite_disk_cache)
 
-  if (!isTRUE(use_disk_cache)) {
-    filename <- tempfile(); on.exit(unlink(filename))
-  }
-  if (file.exists(filename) && !isTRUE(overwrite_disk_cache)) {
+  if (isTRUE(use_temp_file)) {
     filename <- tempfile(); on.exit(unlink(filename))
   }
 
