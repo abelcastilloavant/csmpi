@@ -86,7 +86,7 @@ On-disk caching writes data to disk, to a folder specified by the option
 
 The write operation writes to the disk cache if the option `csmpi.use_disk_cache` is set to `TRUE`.
 If a file already exists in disk cache, the write operation will overwrite the disk cache only if the
-option `csmpi.overwrite_disk_cache` is set to `TRUE`.
+parameter `overwrite_disk_cache` is set to `TRUE` in the call to the agnostic `write` function.
 
 
 ### Retry logic
