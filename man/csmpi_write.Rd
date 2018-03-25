@@ -7,7 +7,8 @@
 csmpi_write(obj, key, cloud_name, storage_format, params,
   use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
   num_retries = getOption("csmpi.num_retries", 3),
-  overwrite_disk_cache = FALSE)
+  overwrite_disk_cache = FALSE,
+  overwrite_cloud_object = getOption("csmpi.force_write", TRUE))
 }
 \arguments{
 \item{obj}{ANY. The object to write to the cloud.}
@@ -30,6 +31,9 @@ the option is not set.}
 
 \item{overwrite_disk_cache}{logical. If the object is already cached on disk,
 do we want to overwrite the cached copy?}
+
+\item{overwite_cloud_object}{logical. If the key already exists in the cloud,
+do we want to overwrite it with the current object?}
 }
 \description{
 Write an R object to the cloud.

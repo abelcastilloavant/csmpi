@@ -11,7 +11,7 @@ get_disk_cache_filename <- function(key, cloud_name, storage_format) {
   if (!isTRUE(use_disk_cache)) { return(FALSE) }
   if (!file.exists(disk_cache_filename)) { return(TRUE) }
   if (!isTRUE(overwrite_disk_cache)) {
-    warning("File exists in disk cache, but `overwrite_disk_cache` is "
+    warning("File exists in disk cache, but `overwrite_disk_cache` is ",
             "FALSE. Using a temp file instead.")
     return(FALSE)
   }

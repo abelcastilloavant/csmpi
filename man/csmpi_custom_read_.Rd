@@ -2,7 +2,7 @@
 % Please edit documentation in R/agnostic_read.R
 \name{csmpi_custom_read_}
 \alias{csmpi_custom_read_}
-\title{Non-NSE version of \code{read}.}
+\title{Non-NSE version of \code{csmpi_custom_read}.}
 \usage{
 csmpi_custom_read_(key, cloud_interface, disk_interface, params,
   use_session_cache = getOption("csmpi.use_session_cache", FALSE),
@@ -40,5 +40,5 @@ create unique file names for caching. If not provided, will be computed
 from the disk interface using non-standard evaluation.}
 }
 \description{
-Non-NSE version of \code{read}.
+Non-NSE version of \code{csmpi_custom_read}.
 }

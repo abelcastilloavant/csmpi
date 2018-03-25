@@ -18,14 +18,14 @@ csmpi_custom_write_ <- function(obj, key, cloud_interface, disk_interface, param
   disk_interface$write(use_write_hook(obj), filename, params)
   with_retries({
     if (!isTRUE(overwrite_cloud_object) && cloud_interface$exists(key)) {
-      stop("cannot write to key ", key, "because object already exists and "
+      stop("cannot write to key ", key, "because object already exists and ",
            "`overwrite_cloud_object` is not set to TRUE.")
     }
     cloud_interface$put(key, filename, params)
   }, num_tries = num_retries, sleep = getOption("csmpi.sleep_time", 0.001))
 
-  if (!cloud_interface$exists(key) {
-    stop("Cannot confirm that " cloud_name_, "successfully put an object in ", key)
+  if (!cloud_interface$exists(key)) {
+    stop("Cannot confirm that ", cloud_name_, "successfully put an object in ", key)
   }
   return(TRUE)
 }
