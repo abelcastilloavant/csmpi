@@ -1,4 +1,3 @@
-
 #' Tooling for s3cmd interface.
 #'
 #' @param key simple string. The key to read/write to in S3.
