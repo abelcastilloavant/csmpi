@@ -84,3 +84,10 @@ get_function_arguments <- function(fn) {
 subset_by_function <- function(fn, lst) {
   lst[intersect(names(lst), get_function_arguments(fn))]
 }
+
+which_command <- function(cmd_name) {
+  option_name <- pp("csmpi.#{cmd_name}_path")
+  cmd         <- getOption(option_name)
+  if (isTRUE(nzchar(cmd))) { return(cmd) }
+  as.character(Sys.which(cmd_name))
+}
