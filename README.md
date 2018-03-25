@@ -60,8 +60,8 @@ interact with the cloud and the files in disk. We have two kinds of interfaces:
 * Disk interfaces: these have `read` and `write` methods to interact with data on disk.
 
 #### Using custom interfaces
-To create a new interface for interactions with the cloud and for storage formats, use the initializing functions
-for the classes `CloudInterface` and `DiskInterface`, respectively:
+To create a new interface for interactions with the cloud and for storage formats, use the initializing
+functions for the classes `CloudInterface` and `DiskInterface`, respectively:
 ```r
 new_cloud_interface <- csmpi::CloudInterface$new(new_get_fn, new_put_fn, new_exists_fn)
 new_disk_interface  <- csmpi::DiskInterface$new(new_read_fn, new_write_fn)
@@ -85,6 +85,8 @@ On-disk caching writes data to disk, to a folder specified by the option
 `csmpi.disk_cache_dir`.
 
 The write operation writes to the disk cache if the option `csmpi.use_disk_cache` is set to `TRUE`.
+If a file already exists in disk cache, the write operation will overwrite the disk cache only if the
+option `csmpi.overwrite_disk_cache` is set to `TRUE`.
 
 
 ### Retry logic
