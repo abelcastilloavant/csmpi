@@ -1,3 +1,7 @@
+# Version 0.0.12
+- Fixed bugs in `agnostic_read` and `agnostic_write` functions.
+- Better parameter handling for s3cmd.
+
 # Version 0.0.11
 - Renamed s3cmd wrapper functions.
 - Added storage formats for writing tables/CSV's, json objects, and plaintext.
