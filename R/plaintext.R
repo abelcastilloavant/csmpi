@@ -14,3 +14,5 @@ write_plaintext <- function(obj, filename, params) {
   params <- subset_by_function(write, params)
   do.call(write, c(list(obj, file = filename), params))
 }
+
+plaintext_interface <- DiskInterface$new(read_plaintext, write_plaintext)
