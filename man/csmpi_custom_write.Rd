@@ -7,7 +7,9 @@
 csmpi_custom_write(obj, key, cloud_interface, disk_interface, params,
   use_disk_cache = getOption("csmpi.use_disk_cache", FALSE),
   num_retries = getOption("csmpi.num_retries", 3),
-  overwrite_disk_cache = FALSE, cloud_name_, storage_format_)
+  overwrite_disk_cache = FALSE,
+  overwrite_cloud_object = getOption("csmpi.force_write", TRUE), cloud_name_,
+  storage_format_)
 }
 \arguments{
 \item{obj}{ANY. The object to write to the cloud.}

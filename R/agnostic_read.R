@@ -1,4 +1,4 @@
-#' Non-NSE version of \code{read}.
+#' Non-NSE version of \code{csmpi_custom_read}.
 #' @inheritParams csmpi_custom_read
 #' @inheritParams csmpi_read
 #' @inheritParams csmpi_write
@@ -17,25 +17,14 @@ csmpi_custom_read_ <- function(key, cloud_interface, disk_interface, params,
     stop("Both 'use_session_cache' and 'use_disk_cache' are TRUE - we currently do not allow this.")
   }
 
-
-  session_cache_key   <- get_session_cache_key(key, cloud_name_, storage_format_)
-  disk_cache_filename <- get_disk_cache_filename(key, cloud_name_, storage_format_)
-
-  if (missing(session_cache_key)) {
-    session_cache_key <- get_session_cache_key(key, cloud_name_, storage_format_)
-  }
-
-  if (missing(disk_cache_filename)) {
-    disk_cache_filename <- get_disk_cache_filename(key, cloud_name_, storage_format_)
-  }
-
   if (isTRUE(use_session_cache) && `in_session_cache?`(session_cache_key)) {
+    session_cache_key <- get_session_cache_key(key, cloud_name_, storage_format_)
     message("reading ", key, " from session cache")
     return(read_from_session_cache(session_cache_key))
   }
 
   if (isTRUE(use_disk_cache)) {
-    filename <- disk_cache_filename
+    filename <- get_disk_cache_filename(key, cloud_name_, storage_format_)
   } else {
     filename <- tempfile(); on.exit(unlink(filename))
   }
@@ -51,7 +40,7 @@ csmpi_custom_read_ <- function(key, cloud_interface, disk_interface, params,
 
   if (isTRUE(use_session_cache)) {
     message("writing ", key, " to session cache")
-    write_to_session_cache(obj, session_cache_key)
+    write_to_session_cache(obj, get_session_cache_key(key, cloud_name_, storage_format_))
   }
   obj
 }
