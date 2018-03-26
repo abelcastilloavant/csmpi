@@ -86,7 +86,7 @@ subset_by_function <- function(fn, lst) {
 }
 
 which_command <- function(cmd_name) {
-  option_name <- pp("csmpi.#{cmd_name}_path")
+  option_name <- pp("csmpi.#{cmd_name}_executable_path")
   cmd         <- getOption(option_name)
   if (isTRUE(nzchar(cmd))) { return(cmd) }
   as.character(Sys.which(cmd_name))
