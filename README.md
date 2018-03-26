@@ -14,16 +14,20 @@ if (!require(devtools)) { install.packages("devtools") }
 devtools::install_github("abelcastilloavant/csmpi")
 ```
 
-This package is still under development. Right now, the only available cloud interface is AWS S3 via
-the CLI tool `s3cmd`, and reading/writing files RDS files. There are two wrappers for this - `s3cmdread`
-and `s3cmdstore`:
+This package supports AWS S3 storage using either `s3cmd` or the `aws` command line tool. There are
+convenience wrappers based on the cloud interface chosen, which take a choice of storage format as
+a parameter.
+
+This package also supports a variety of storage formats, including RDS, json, and CSV.
+
+Here's an example of using `s3cmd` to store `iris` at a flat file using `s3cmd`:
 ```r
 library(csmpi)
-s3cmd_store(iris, "temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
+s3cmd_store(iris, "temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket", storage_format = "table")
 
 # later, from another R session
 library(csmpi)
-iris2 <- s3cmd_read("temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket")
+iris2 <- s3cmd_read("temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket", storage_format = "Table)
 identical(iris, iris2)
 # [1] TRUE
 

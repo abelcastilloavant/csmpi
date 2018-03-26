@@ -9,13 +9,13 @@
 
 #' @rdname s3cmd
 get_using_s3cmd <- function(key, filename, params) {
-  system(pp('#{which_s3cmd()} get "#{params$bucket_name}/#{key}" ',
+  system(pp('#{which_command("s3cmd")} get "#{params$bucket_name}/#{key}" ',
     ' #{filename} #{options_for_s3cmd_get(params)} '))
 }
 
 #' @rdname s3cmd
 put_using_s3cmd <- function(key, filename, params) {
-  system(pp('#{which_s3cmd()} put #{filename} "#{params$bucket_name}/#{key}" ',
+  system(pp('#{which_command("s3cmd")} put #{filename} "#{params$bucket_name}/#{key}" ',
     '#{options_for_s3cmd_put(params)}'))
 }
 
