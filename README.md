@@ -69,8 +69,8 @@ functions for the classes `CloudInterface` and `DiskInterface`, respectively:
 ```r
 new_cloud_interface <- csmpi::CloudInterface$new(new_get_fn, new_put_fn, new_exists_fn)
 new_disk_interface  <- csmpi::DiskInterface$new(new_read_fn, new_write_fn)
-csmpi::write(iris, "key_to_new_object", new_cloud_interface, new_disk_interface)
-iris2 <- csmpi::read("key_to_new_object", new_cloud_interface, new_disk_interface)
+csmpi::csmpi_custom_write(iris, "key_to_new_object", new_cloud_interface, new_disk_interface)
+iris2 <- csmpi::csmpi_custom_read("key_to_new_object", new_cloud_interface, new_disk_interface)
 identical(iris, iris2)
 # Hopefully `TRUE`!
 ```
