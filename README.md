@@ -27,7 +27,7 @@ s3cmd_store(iris, "temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket", st
 
 # later, from another R session
 library(csmpi)
-iris2 <- s3cmd_read("temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket", storage_format = "Table)
+iris2 <- s3cmd_read("temp/experimenting_with_csmpi", "s3:/path/to/my/s3bucket", storage_format = "table")
 identical(iris, iris2)
 # [1] TRUE
 
