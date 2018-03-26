@@ -14,11 +14,11 @@ if (!require(devtools)) { install.packages("devtools") }
 devtools::install_github("abelcastilloavant/csmpi")
 ```
 
-This package supports AWS S3 storage using either `s3cmd` or the `aws` command line tool. There are
-convenience wrappers based on the cloud interface chosen, which take a choice of storage format as
-a parameter.
-
-This package also supports a variety of storage formats, including RDS, json, and CSV.
+This package is designed to easily support a wide range of cloud interfaces and storage formats.
+As of v0.1.0, this package supports AWS S3 storage using either `s3cmd` or the `aws` command line tool.
+There are convenience wrappers based on the cloud interface chosen, which take a choice of storage
+format as a parameter.  As of v0.1.0, this package also supports a variety of storage formats,
+including RDS, json, and CSV.
 
 Here's an example of using `s3cmd` to store `iris` at a flat file using `s3cmd`:
 ```r
